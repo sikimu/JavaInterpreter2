@@ -16,7 +16,7 @@ class JiMethodInstanceTest {
 
         JiMethodInstance jiMethodInstance = new JiMethodInstance();
         jiMethodInstance.codes.add(input);
-        JiInt jiInt = jiMethodInstance.run();
+        JiObject.JiInt jiInt = jiMethodInstance.run();
         assertEquals(jiInt.value(), expected);
     }
     static Stream<Arguments> runProvider() {
