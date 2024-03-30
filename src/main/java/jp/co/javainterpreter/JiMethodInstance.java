@@ -8,7 +8,7 @@ public class JiMethodInstance {
 
     public JiObject run() {
         for (JiObject[] code : codes) {
-            if (code[0] instanceof JiObject.JiReturn jiReturn) {
+            if (code[0] instanceof JiObject.JiReturn) {
                 return code[1];
             }
         }
