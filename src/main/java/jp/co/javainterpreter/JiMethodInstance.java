@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class JiMethodInstance {
 
-    public ArrayList<String[]> codes = new ArrayList<>();
+    public ArrayList<JiObject[]> codes = new ArrayList<>();
 
-    public JiObject.JiInt run() {
-        for (String[] code : codes) {
-            if (code[0].equals("return")) {
-                return new JiObject.JiInt(code[1]);
+    public JiObject run() {
+        for (JiObject[] code : codes) {
+            if (code[0] instanceof JiObject.JiReturn jiReturn) {
+                return code[1];
             }
         }
         // 例外処理
