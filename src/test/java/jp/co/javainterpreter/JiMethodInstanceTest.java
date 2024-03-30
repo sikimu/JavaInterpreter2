@@ -21,8 +21,8 @@ class JiMethodInstanceTest {
     }
     static Stream<Arguments> runProvider() {
         return Stream.of(
-                Arguments.of(new JiObject.JiInt("0"), new JiObject[]{new JiObject.JiReturn(), new JiObject.JiInt("0")}),
-                Arguments.of(new JiObject.JiInt("1"), new JiObject[]{new JiObject.JiReturn(), new JiObject.JiInt("1")})
+                Arguments.of(new JiObject.JiInt(0), new JiObject[]{new JiObject.JiReturn(), new JiObject.JiInt(0)}),
+                Arguments.of(new JiObject.JiInt(1), new JiObject[]{new JiObject.JiReturn(), new JiObject.JiInt(1)})
         );
     }
 }
