@@ -6,10 +6,10 @@ public class JiMethodInstance {
 
     public ArrayList<String[]> codes = new ArrayList<>();
 
-    public JiObject run() {
+    public JiInt run() {
         for (String[] code : codes) {
             if (code[0].equals("return")) {
-                return new JiObject(code[1]);
+                return new JiInt(code[1]);
             }
         }
         // 例外処理
