@@ -2,7 +2,7 @@ package jp.co.javainterpreter;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JiMethodInstanceTest {
 
@@ -10,7 +10,8 @@ class JiMethodInstanceTest {
     void run() {
 
         JiMethodInstance jiMethodInstance = new JiMethodInstance();
+        jiMethodInstance.codes.add(new String[]{"return", "0"});
         JiObject jiObject = jiMethodInstance.run();
-        assertNull(jiObject);
+        assertEquals(jiObject.value(), "0");
     }
 }
