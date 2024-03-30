@@ -12,17 +12,17 @@ class JiMethodInstanceTest {
 
     @ParameterizedTest
     @MethodSource("runProvider")
-    void run(String expected, String input) {
+    void run(String expected, String[] input) {
 
         JiMethodInstance jiMethodInstance = new JiMethodInstance();
-        jiMethodInstance.codes.add(new String[]{"return", input});
+        jiMethodInstance.codes.add(input);
         JiObject jiObject = jiMethodInstance.run();
         assertEquals(jiObject.value(), expected);
     }
     static Stream<Arguments> runProvider() {
         return Stream.of(
-                Arguments.of("0", "0"),
-                Arguments.of("1", "1")
+                Arguments.of("0", new String[]{"return", "0"}),
+                Arguments.of("1", new String[]{"return", "1"})
         );
     }
 }
