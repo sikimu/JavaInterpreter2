@@ -21,7 +21,8 @@ class JiMethodInstanceTest {
     }
     static Stream<Arguments> runProvider() {
         return Stream.of(
-                Arguments.of("0", "0")
+                Arguments.of("0", "0"),
+                Arguments.of("1", "1")
         );
     }
 }

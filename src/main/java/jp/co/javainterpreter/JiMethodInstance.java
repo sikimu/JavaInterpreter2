@@ -7,6 +7,12 @@ public class JiMethodInstance {
     public ArrayList<String[]> codes = new ArrayList<>();
 
     public JiObject run() {
-        return new JiObject("0");
+        for (String[] code : codes) {
+            if (code[0].equals("return")) {
+                return new JiObject(code[1]);
+            }
+        }
+        // 例外処理
+        throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
 }
