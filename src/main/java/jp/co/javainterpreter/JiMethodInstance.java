@@ -2,7 +2,7 @@ package jp.co.javainterpreter;
 
 import java.util.ArrayList;
 
-public class JiMethodInstance {
+class JiMethodInstance {
 
     final JiMethod jiMethod;
 
