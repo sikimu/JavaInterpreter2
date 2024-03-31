@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class JiMethodInstance {
 
+    final JiMethod jiMethod;
+
+    public JiMethodInstance(JiMethod jiMethod) {
+        this.jiMethod = jiMethod;
+    }
+
     public ArrayList<JiObject[]> objects = new ArrayList<>();
 
     public JiObject run() {
