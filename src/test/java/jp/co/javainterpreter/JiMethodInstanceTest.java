@@ -24,7 +24,8 @@ class JiMethodInstanceTest {
         return Stream.of(
             Arguments.of(JiObject.create("0"), new JiInstruction.JiReturn(JiObject.createArrays("0"))),
             Arguments.of(JiObject.create("1"), new JiInstruction.JiReturn(JiObject.createArrays("1"))),
-            Arguments.of(JiObject.create("2"), new JiInstruction.JiReturn(JiObject.createArrays("1", "+", "1")))
+            Arguments.of(JiObject.create("2"), new JiInstruction.JiReturn(JiObject.createArrays("1", "+", "1"))),
+            Arguments.of(JiObject.create("3"), new JiInstruction.JiReturn(JiObject.createArrays("1", "+", "1", "+", "1"))),
         );
     }
 }
