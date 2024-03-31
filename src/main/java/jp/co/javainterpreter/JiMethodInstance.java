@@ -5,18 +5,28 @@ record JiMethodInstance(JiMethod jiMethod) {
     public JiObject run() {
         for (JiInstruction code : jiMethod.instructions) {
             if (code instanceof JiInstruction.JiReturn jiReturn) {
-                if(jiReturn.objects().length == 1) {
-                    return jiReturn.objects()[0];
-                }
-                JiObject[] objects = jiReturn.objects();
-                JiObject left = objects[0];
-                JiObject right = objects[2];
-                if (objects[1] instanceof JiObject.JiAdd) {
-                    return new JiObject.JiInt(((JiObject.JiInt) left).value() + ((JiObject.JiInt) right).value());
-                }
+                return calculate(jiReturn.objects());
             }
         }
         // 例外処理
         throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
+
+    private JiObject calculate(JiObject[] objects) {
+        JiObject result = objects[0];
+        for (int i = 1; i < objects.length; i += 2) {
+            JiObject operator = objects[i];
+            JiObject operand = objects[i + 1];
+            if (operator instanceof JiObject.JiAdd jiAdd) {
+                result = new JiObject.JiInt(((JiObject.JiInt) result).value() + ((JiObject.JiInt) operand).value());
+            } else if (operator instanceof JiObject.JiSub jiSub) {
+                result = new JiObject.JiInt(((JiObject.JiInt) result).value() - ((JiObject.JiInt) operand).value());
+            } else {
+                // 例外処理
+                throw new UnsupportedOperationException("Unimplemented method 'calculate'");
+            }
+        }
+        return result;
+    }
+
 }
