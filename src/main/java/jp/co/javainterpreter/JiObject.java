@@ -3,6 +3,13 @@ package jp.co.javainterpreter;
 public sealed interface JiObject {
 
     static JiObject create(String value) {
+        switch (value) {
+            case "+":
+                return new JiAdd();
+            case "-":
+                return new JiSub();
+        }
+
         // intに変換できる場合はint型に変換
         try {
             return new JiInt(Integer.parseInt(value));
@@ -19,6 +26,12 @@ public sealed interface JiObject {
             jiObjects[i] = create(values[i]);
         }
         return jiObjects;
+    }
+
+    record JiAdd() implements JiObject {
+    }
+
+    record JiSub() implements JiObject {
     }
 
     record JiInt(int value) implements JiObject {
