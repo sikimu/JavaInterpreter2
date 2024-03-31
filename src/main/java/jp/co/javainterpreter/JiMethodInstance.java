@@ -1,7 +1,5 @@
 package jp.co.javainterpreter;
 
-import java.util.ArrayList;
-
 class JiMethodInstance {
 
     final JiMethod jiMethod;
