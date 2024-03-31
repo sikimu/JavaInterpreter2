@@ -17,10 +17,10 @@ public sealed interface JiObject {
         throw new UnsupportedOperationException("Unimplemented method 'create'");
     }
 
-    static JiObject[] createArrays(String... valus) {
-        JiObject[] jiObjects = new JiObject[valus.length];
-        for (int i = 0; i < valus.length; i++) {
-            jiObjects[i] = create(valus[i]);
+    static JiObject[] createArrays(String... values) {
+        JiObject[] jiObjects = new JiObject[values.length];
+        for (int i = 0; i < values.length; i++) {
+            jiObjects[i] = create(values[i]);
         }
         return jiObjects;
     }

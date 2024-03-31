@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class JiMethodInstance {
 
-    public ArrayList<JiObject[]> codes = new ArrayList<>();
+    public ArrayList<JiObject[]> objects = new ArrayList<>();
 
     public JiObject run() {
-        for (JiObject[] code : codes) {
+        for (JiObject[] code : objects) {
             if (code[0] instanceof JiObject.JiReturn) {
                 return code[1];
             }

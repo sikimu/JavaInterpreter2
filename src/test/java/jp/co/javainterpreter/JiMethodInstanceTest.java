@@ -15,7 +15,7 @@ class JiMethodInstanceTest {
     void run(JiObject expected, JiObject[] input) {
 
         JiMethodInstance jiMethodInstance = new JiMethodInstance();
-        jiMethodInstance.codes.add(input);
+        jiMethodInstance.objects.add(input);
         JiObject jiObject = jiMethodInstance.run();
         assertEquals(jiObject, expected);
     }
