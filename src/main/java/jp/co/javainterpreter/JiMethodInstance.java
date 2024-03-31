@@ -1,12 +1,6 @@
 package jp.co.javainterpreter;
 
-class JiMethodInstance {
-
-    final JiMethod jiMethod;
-
-    public JiMethodInstance(JiMethod jiMethod) {
-        this.jiMethod = jiMethod;
-    }
+record JiMethodInstance(JiMethod jiMethod) {
 
     public JiObject run() {
         for (JiInstruction code : jiMethod.instructions) {
