@@ -4,5 +4,5 @@ import java.util.ArrayList;
 
 public class JiMethod {
 
-    public ArrayList<JiObject[]> objects = new ArrayList<>();
+    public ArrayList<JiInstruction> instructions = new ArrayList<>();
 }

@@ -12,18 +12,18 @@ class JiMethodInstanceTest {
 
     @ParameterizedTest
     @MethodSource("runProvider")
-    void run(JiObject expected, JiObject[] input) {
+    void run(JiObject expected, JiInstruction input) {
 
         JiMethod jiMethod = new JiMethod();
-        jiMethod.objects.add(input);
+        jiMethod.instructions.add(input);
         JiMethodInstance jiMethodInstance = new JiMethodInstance(jiMethod);
         JiObject jiObject = jiMethodInstance.run();
         assertEquals(jiObject, expected);
     }
     static Stream<Arguments> runProvider() {
         return Stream.of(
-                Arguments.of(JiObject.create("0"), JiObject.createArrays("return", "0")),
-                Arguments.of(JiObject.create("1"), JiObject.createArrays("return", "1"))
+            Arguments.of(JiObject.create("0"), new JiInstruction.JiReturn(JiObject.createArrays("0"))),
+            Arguments.of(JiObject.create("1"), new JiInstruction.JiReturn(JiObject.createArrays("1")))
         );
     }
 }

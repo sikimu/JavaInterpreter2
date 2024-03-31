@@ -9,9 +9,9 @@ class JiMethodInstance {
     }
 
     public JiObject run() {
-        for (JiObject[] code : jiMethod.objects) {
-            if (code[0] instanceof JiObject.JiReturn) {
-                return code[1];
+        for (JiInstruction code : jiMethod.instructions) {
+            if (code instanceof JiInstruction.JiReturn jiReturn) {
+                return jiReturn.objects()[0];
             }
         }
         // 例外処理
