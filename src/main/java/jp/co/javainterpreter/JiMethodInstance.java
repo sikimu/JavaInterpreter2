@@ -10,10 +10,8 @@ class JiMethodInstance {
         this.jiMethod = jiMethod;
     }
 
-    public ArrayList<JiObject[]> objects = new ArrayList<>();
-
     public JiObject run() {
-        for (JiObject[] code : objects) {
+        for (JiObject[] code : jiMethod.objects) {
             if (code[0] instanceof JiObject.JiReturn) {
                 return code[1];
             }
