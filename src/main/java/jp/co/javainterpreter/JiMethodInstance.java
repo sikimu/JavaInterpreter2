@@ -17,14 +17,19 @@ record JiMethodInstance(JiMethod jiMethod) {
         for (int i = 1; i < objects.length; i += 2) {
             JiObject operator = objects[i];
             JiObject operand = objects[i + 1];
-            if (operator instanceof JiObject.JiAdd jiAdd) {
-                result = new JiObject.JiInt(((JiObject.JiInt) result).value() + ((JiObject.JiInt) operand).value());
-            } else if (operator instanceof JiObject.JiSub jiSub) {
-                result = new JiObject.JiInt(((JiObject.JiInt) result).value() - ((JiObject.JiInt) operand).value());
-            } else {
-                // 例外処理
-                throw new UnsupportedOperationException("Unimplemented method 'calculate'");
-            }
+            result = switch (operator) {
+                case JiObject.JiAdd jiAdd ->
+                        new JiObject.JiInt(((JiObject.JiInt) result).value() + ((JiObject.JiInt) operand).value());
+                case JiObject.JiSub jiSub ->
+                        new JiObject.JiInt(((JiObject.JiInt) result).value() - ((JiObject.JiInt) operand).value());
+                case JiObject.JiMul jiMul ->
+                        new JiObject.JiInt(((JiObject.JiInt) result).value() * ((JiObject.JiInt) operand).value());
+                case JiObject.JiDiv jiDiv ->
+                        new JiObject.JiInt(((JiObject.JiInt) result).value() / ((JiObject.JiInt) operand).value());
+                case null, default ->
+                    // 例外処理
+                        throw new UnsupportedOperationException("Unimplemented method 'calculate'");
+            };
         }
         return result;
     }

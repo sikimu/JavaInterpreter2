@@ -8,6 +8,10 @@ public sealed interface JiObject {
                 return new JiAdd();
             case "-":
                 return new JiSub();
+                case "*":
+                return new JiMul();
+            case "/":
+                return new JiDiv();
         }
 
         // intに変換できる場合はint型に変換
@@ -32,6 +36,12 @@ public sealed interface JiObject {
     }
 
     record JiSub() implements JiObject {
+    }
+
+    record JiMul() implements JiObject {
+    }
+
+    record JiDiv() implements JiObject {
     }
 
     record JiInt(int value) implements JiObject {

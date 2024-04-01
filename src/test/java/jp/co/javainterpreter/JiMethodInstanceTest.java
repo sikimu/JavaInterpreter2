@@ -25,6 +25,9 @@ class JiMethodInstanceTest {
             Arguments.of(JiObject.create("0"), new JiInstruction.JiReturn(JiObject.createArrays("0"))),
             Arguments.of(JiObject.create("1"), new JiInstruction.JiReturn(JiObject.createArrays("1"))),
             Arguments.of(JiObject.create("2"), new JiInstruction.JiReturn(JiObject.createArrays("1", "+", "1"))),
+            Arguments.of(JiObject.create("0"), new JiInstruction.JiReturn(JiObject.createArrays("1", "-", "1"))),
+            Arguments.of(JiObject.create("12"), new JiInstruction.JiReturn(JiObject.createArrays("4", "*", "3"))),
+            Arguments.of(JiObject.create("2"), new JiInstruction.JiReturn(JiObject.createArrays("6", "/", "3"))),
             Arguments.of(JiObject.create("3"), new JiInstruction.JiReturn(JiObject.createArrays("1", "+", "1", "+", "1")))
         );
     }
