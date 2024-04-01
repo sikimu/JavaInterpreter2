@@ -18,13 +18,13 @@ record JiMethodInstance(JiMethod jiMethod) {
             JiObject operator = objects[i];
             JiObject operand = objects[i + 1];
             result = switch (operator) {
-                case JiObject.JiAdd jiAdd ->
+                case JiObject.JiAdd ignored ->
                         new JiObject.JiInt(((JiObject.JiInt) result).value() + ((JiObject.JiInt) operand).value());
-                case JiObject.JiSub jiSub ->
+                case JiObject.JiSub ignored ->
                         new JiObject.JiInt(((JiObject.JiInt) result).value() - ((JiObject.JiInt) operand).value());
-                case JiObject.JiMul jiMul ->
+                case JiObject.JiMul ignored ->
                         new JiObject.JiInt(((JiObject.JiInt) result).value() * ((JiObject.JiInt) operand).value());
-                case JiObject.JiDiv jiDiv ->
+                case JiObject.JiDiv ignored ->
                         new JiObject.JiInt(((JiObject.JiInt) result).value() / ((JiObject.JiInt) operand).value());
                 case null, default ->
                     // 例外処理
