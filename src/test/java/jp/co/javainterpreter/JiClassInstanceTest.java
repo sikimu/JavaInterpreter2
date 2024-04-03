@@ -8,7 +8,9 @@ class JiClassInstanceTest {
 
     @Test
     void test() {
-        JiClassInstance jiClassInstance = new JiClassInstance(new JiClass());
+        JiClass jiClass = new JiClass();
+
+        JiClassInstance jiClassInstance = new JiClassInstance(jiClass);
         assertEquals(new JiObject.JiInt(1), jiClassInstance.callMethod("test"));
     }
 }
