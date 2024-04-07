@@ -10,7 +10,9 @@ class JiClassInstanceTest {
     void test() {
         JiClass jiClass = new JiClass();
 
-        JiClassInstance jiClassInstance = new JiClassInstance(jiClass);
+        JiMethodInstanceFactory jiMethodInstanceFactory = new JiMethodInstanceFactory();
+
+        JiClassInstance jiClassInstance = new JiClassInstance(jiClass, jiMethodInstanceFactory);
         assertEquals(new JiObject.JiInt(1), jiClassInstance.callMethod("test"));
     }
 }
