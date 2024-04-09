@@ -8,7 +8,7 @@ class JiClassInstanceTest {
 
     @Test
     void test() {
-        JiClass jiClass = new JiClass();
+        JiClass jiClass = new JiClass("Test");
 
         JiMethodInstanceFactory jiMethodInstanceFactory = new JiMethodInstanceFactory();
 

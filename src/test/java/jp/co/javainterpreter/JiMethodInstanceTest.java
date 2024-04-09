@@ -14,7 +14,7 @@ class JiMethodInstanceTest {
     @MethodSource("runProvider")
     void run(JiObject expected, JiInstruction input) {
 
-        JiMethod jiMethod = new JiMethod();
+        JiMethod jiMethod = new JiMethod("test");
         jiMethod.instructions.add(input);
         JiMethodInstance jiMethodInstance = new JiMethodInstance(jiMethod);
         JiObject jiObject = jiMethodInstance.run();
