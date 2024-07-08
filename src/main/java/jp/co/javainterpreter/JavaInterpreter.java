@@ -2,7 +2,6 @@ package jp.co.javainterpreter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class JavaInterpreter {
 
@@ -22,6 +21,11 @@ public class JavaInterpreter {
     };
 
     /**
+     * 単語のリスト
+     */
+    private final ArrayList<String> words;
+
+    /**
      * コンストラクタ
      * @param lines Javaのコードを1行ずつ格納した配列
      */
@@ -31,7 +35,22 @@ public class JavaInterpreter {
             throw new IllegalArgumentException("引数が不正です");
         }
 
+        words = createWordList(lines);
+    }
 
+    /**
+     * 単語のリストを作成する
+     *
+     * @param lines Javaのコードを1行ずつ格納した配列
+     * @return 単語のリスト
+     */
+    static ArrayList<String> createWordList(String[] lines) {
+        return Arrays.stream(lines)
+            .map(JavaInterpreter::splitByWhitespace)
+            .reduce(new ArrayList<>(), (a, b) -> {
+                a.addAll(b);
+                return a;
+            });
     }
 
     /**
@@ -40,7 +59,7 @@ public class JavaInterpreter {
      * @return 分割された文字列のリスト
      */
     public static ArrayList<String> splitByOperatorsAndDelimiters(String word) {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         ArrayList<String> operatorsAndDelimiters = getOperatorsAndDelimiters();
         int start = 0;
         for (int i = 0; i < word.length(); i++) {
@@ -67,7 +86,7 @@ public class JavaInterpreter {
      * @return 演算子と区切り文字のリスト
      */
     private static ArrayList<String> getOperatorsAndDelimiters() {
-        ArrayList<String> list = new ArrayList<String>(Arrays.asList(OPERATORS));
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(OPERATORS));
         list.addAll(Arrays.asList(DELIMITERS));
         list.sort((a, b) -> b.length() - a.length());
         return list;
@@ -79,7 +98,19 @@ public class JavaInterpreter {
      * @return 分割された文字列のリスト
      */
     static ArrayList<String> splitByWhitespace(String word) {
-
-        return new ArrayList<String>(List.of(word.split("[ \t\n\r]")));
+        ArrayList<String> list = new ArrayList<>();
+        int start = 0;
+        for (int i = 0; i < word.length(); i++) {
+            if (Character.isWhitespace(word.charAt(i))) {
+                if (start != i) {
+                    list.add(word.substring(start, i));
+                }
+                start = i + 1;
+            }
+        }
+        if (start != word.length()) {
+            list.add(word.substring(start));
+        }
+        return list;
     }
 }
