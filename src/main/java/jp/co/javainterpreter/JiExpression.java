@@ -14,14 +14,14 @@ public class JiExpression {
         this.elements = elements;
     }
 
-    public int calculate() {
+    public JiImmutableInteger calculate() {
 
         ArrayList<String> elementList = new ArrayList<>();
         Collections.addAll(elementList, elements);
 
         calculate(elementList);
 
-        return Integer.parseInt(elementList.getFirst());
+        return JiImmutableInteger.of(Integer.parseInt(elementList.getFirst()));
     }
 
     private static void calculate(ArrayList<String> elementList){

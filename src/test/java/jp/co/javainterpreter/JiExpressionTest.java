@@ -10,11 +10,11 @@ class JiExpressionTest {
     void 数字のみの計算() {
         {
             JiExpression jiExpression = new JiExpression("3");
-            assertEquals(3, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(3), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("5");
-            assertEquals(5, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(5), jiExpression.calculate());
         }
     }
 
@@ -22,11 +22,11 @@ class JiExpressionTest {
     void 足し算() {
         {
             JiExpression jiExpression = new JiExpression("3", "+", "5");
-            assertEquals(8, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(8), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("7", "+", "3");
-            assertEquals(10, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(10), jiExpression.calculate());
         }
     }
 
@@ -34,11 +34,11 @@ class JiExpressionTest {
     void 引き算() {
         {
             JiExpression jiExpression = new JiExpression("3", "-", "5");
-            assertEquals(-2, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(-2), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("7", "-", "3");
-            assertEquals(4, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(4), jiExpression.calculate());
         }
     }
 
@@ -46,11 +46,11 @@ class JiExpressionTest {
     void 掛け算() {
         {
             JiExpression jiExpression = new JiExpression("3", "*", "5");
-            assertEquals(15, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(15), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("7", "*", "3");
-            assertEquals(21, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(21), jiExpression.calculate());
         }
     }
 
@@ -58,11 +58,11 @@ class JiExpressionTest {
     void 割り算() {
         {
             JiExpression jiExpression = new JiExpression("3", "/", "5");
-            assertEquals(0, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(0), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("7", "/", "3");
-            assertEquals(2, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(2), jiExpression.calculate());
         }
     }
 
@@ -70,11 +70,11 @@ class JiExpressionTest {
     void 複数の演算子() {
         {
             JiExpression jiExpression = new JiExpression("3", "+", "5", "*", "2");
-            assertEquals(13, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(13), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("7", "-", "3", "/", "3");
-            assertEquals(6, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(6), jiExpression.calculate());
         }
     }
 
@@ -82,11 +82,11 @@ class JiExpressionTest {
     void 複数の演算子_括弧() {
         {
             JiExpression jiExpression = new JiExpression("(", "3", "+", "5", ")", "*", "2");
-            assertEquals(16, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(16), jiExpression.calculate());
         }
         {
             JiExpression jiExpression = new JiExpression("7", "-", "(", "3", "/", "3", ")");
-            assertEquals(6, jiExpression.calculate());
+            assertEquals(JiImmutableInteger.of(6), jiExpression.calculate());
         }
     }
 }
