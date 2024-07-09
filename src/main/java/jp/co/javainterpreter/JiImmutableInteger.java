@@ -1,11 +1,6 @@
 package jp.co.javainterpreter;
 
-public class JiImmutableInteger {
-    private final int value;
-
-    public JiImmutableInteger(int value) {
-        this.value = value;
-    }
+public record JiImmutableInteger(int value) {
 
     public static JiImmutableInteger of(int value) {
         return new JiImmutableInteger(value);
@@ -25,10 +20,6 @@ public class JiImmutableInteger {
 
     public JiImmutableInteger divide(JiImmutableInteger other) {
         return new JiImmutableInteger(this.value / other.value);
-    }
-
-    public int getValue() {
-        return value;
     }
 
     @Override
