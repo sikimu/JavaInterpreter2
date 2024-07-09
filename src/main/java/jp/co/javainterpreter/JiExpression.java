@@ -46,7 +46,7 @@ public class JiExpression {
     static void multiplyAndDivide(ArrayList<String> elementList) {
         // *と/を計算
         for (int i = 0; i < elementList.size(); i++) {
-            if (elementList.get(i).equals("*")) {
+            if (JiOperator.of(elementList.get(i)).isMultiplication()) {
                 int result = Integer.parseInt(elementList.get(i - 1)) * Integer.parseInt(elementList.get(i + 1));
                 elementList.set(i - 1, String.valueOf(result));
                 elementList.remove(i);

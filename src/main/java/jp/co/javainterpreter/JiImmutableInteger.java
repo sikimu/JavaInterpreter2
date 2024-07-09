@@ -1,6 +1,6 @@
 package jp.co.javainterpreter;
 
-public record JiImmutableInteger(int value) {
+public record JiImmutableInteger(int value) implements JiExpressionElement {
 
     public static JiImmutableInteger of(int value) {
         return new JiImmutableInteger(value);
