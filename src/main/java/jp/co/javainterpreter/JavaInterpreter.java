@@ -24,6 +24,13 @@ public class JavaInterpreter {
     }
 
     /**
+     * 空白や改行で分割
+     */
+    static String[] split(String sourceCode) {
+        return sourceCode.split("[\\s\\n]+");
+    }
+
+    /**
      * シングルコメントの除去
      */
     static String removeSingleComment(String sourceCode) {

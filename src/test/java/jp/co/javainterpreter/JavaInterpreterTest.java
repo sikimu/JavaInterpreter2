@@ -24,4 +24,11 @@ class JavaInterpreterTest {
         assertEquals("", JavaInterpreter.removeMultiComment("/*a*/"));
         assertEquals("", JavaInterpreter.removeMultiComment("/*a\nb*/"));
     }
+
+    @Test
+    void testSplit() {
+        assertEquals(Arrays.asList("a", "b", "c"), Arrays.asList(JavaInterpreter.split("a b c")));
+        assertEquals(Arrays.asList("a", "b", "c"), Arrays.asList(JavaInterpreter.split("a\r\nb\nc")));
+        assertEquals(Arrays.asList("a", "b", "c"), Arrays.asList(JavaInterpreter.split("a\n\nb\n\nc")));
+    }
 }
