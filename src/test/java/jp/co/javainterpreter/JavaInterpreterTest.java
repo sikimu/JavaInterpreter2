@@ -34,4 +34,18 @@ class JavaInterpreterTest {
         assertEquals(0, JavaInterpreter.skipWhiteSpace(" a", 2));
         assertEquals(1, JavaInterpreter.skipWhiteSpace(" a ", 2));
     }
+
+    @Test
+    void testGetCharacterLiteral() {
+        assertEquals("'a'", JavaInterpreter.getCharacterLiteral("'a'", 0));
+        assertEquals("'a'", JavaInterpreter.getCharacterLiteral("'a'b", 0));
+        assertEquals("'a'", JavaInterpreter.getCharacterLiteral("a'a'", 1));
+        assertEquals("'a'", JavaInterpreter.getCharacterLiteral("a'a'b", 1));
+    }
+
+    @Test
+    void testGetStringLiteral() {
+        assertEquals("\"a\"", JavaInterpreter.getStringLiteral("\"a\"", 0));
+        assertEquals("\"aa\"", JavaInterpreter.getStringLiteral("\"aa\"b", 0));
+    }
 }
