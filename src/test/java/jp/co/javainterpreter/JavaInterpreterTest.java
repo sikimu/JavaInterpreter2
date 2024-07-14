@@ -26,9 +26,12 @@ class JavaInterpreterTest {
     }
 
     @Test
-    void testSplit() {
-        assertEquals(Arrays.asList("a", "b", "c"), Arrays.asList(JavaInterpreter.split("a b c")));
-        assertEquals(Arrays.asList("a", "b", "c"), Arrays.asList(JavaInterpreter.split("a\r\nb\nc")));
-        assertEquals(Arrays.asList("a", "b", "c"), Arrays.asList(JavaInterpreter.split("a\n\nb\n\nc")));
+    void testSkipWhiteSpace() {
+        assertEquals(0, JavaInterpreter.skipWhiteSpace("", 0));
+        assertEquals(0, JavaInterpreter.skipWhiteSpace("a", 0));
+        assertEquals(0, JavaInterpreter.skipWhiteSpace(" a", 1));
+        assertEquals(1, JavaInterpreter.skipWhiteSpace(" a", 0));
+        assertEquals(0, JavaInterpreter.skipWhiteSpace(" a", 2));
+        assertEquals(1, JavaInterpreter.skipWhiteSpace(" a ", 2));
     }
 }
