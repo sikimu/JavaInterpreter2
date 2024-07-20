@@ -1,5 +1,6 @@
 package jp.co.javainterpreter;
 
+import jp.co.javainterpreter.token.JiWhitespace;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

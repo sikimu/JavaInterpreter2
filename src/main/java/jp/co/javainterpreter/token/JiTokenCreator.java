@@ -1,6 +1,5 @@
-package jp.co.javainterpreter;
+package jp.co.javainterpreter.token;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

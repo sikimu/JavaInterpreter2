@@ -1,4 +1,4 @@
-package jp.co.javainterpreter;
+package jp.co.javainterpreter.token;
 
 import java.util.Optional;
 
