@@ -2,8 +2,8 @@ package jp.co.javainterpreter.object;
 
 public class JiClass {
 
-    final String packageName;
-    final String className;
+    public final String packageName;
+    public final String className;
 
     /**
      * Constructor

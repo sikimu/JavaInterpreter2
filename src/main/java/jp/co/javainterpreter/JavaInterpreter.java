@@ -34,6 +34,9 @@ public class JavaInterpreter {
      * @return Jiクラス
      */
     public jp.co.javainterpreter.object.JiClass getJiClass(String packageName, String className) {
-        return jiClass;
+        if(jiClass.packageName.equals(packageName) && "Token".equals(className)) {
+            return jiClass;
+        }
+        throw new RuntimeException("Class not found: " + packageName + "." + className);
     }
 }
