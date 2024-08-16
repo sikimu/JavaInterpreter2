@@ -5,6 +5,8 @@ import jp.co.javainterpreter.object.JiClass;
 
 public class JavaInterpreter {
 
+    JiClass jiClass;
+
     public JiClassInstance createInstance(String className) {
 
         if(className.equals("jp.co.javainterpreter.instance.JiClassInstance")) {
@@ -21,6 +23,8 @@ public class JavaInterpreter {
      * @param source ソース
      */
     public void loadSource(String packageName, String source) {
+
+        jiClass = new JiClass(packageName, source);
     }
 
     /**
@@ -30,6 +34,6 @@ public class JavaInterpreter {
      * @return Jiクラス
      */
     public jp.co.javainterpreter.object.JiClass getJiClass(String packageName, String className) {
-        return new JiClass(packageName, className);
+        return jiClass;
     }
 }
