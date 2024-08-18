@@ -24,7 +24,7 @@ public class JavaInterpreter {
      */
     public void loadSource(String packageName, String source) {
 
-        jiClass = new JiClass(packageName, source);
+        jiClass = new JiClass(packageName, "Token");
     }
 
     /**
@@ -34,7 +34,7 @@ public class JavaInterpreter {
      * @return Jiクラス
      */
     public jp.co.javainterpreter.object.JiClass getJiClass(String packageName, String className) {
-        if(jiClass.packageName.equals(packageName) && "Token".equals(className)) {
+        if(jiClass.packageName.equals(packageName) && jiClass.className.equals(className)) {
             return jiClass;
         }
         throw new RuntimeException("Class not found: " + packageName + "." + className);
