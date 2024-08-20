@@ -1,7 +1,6 @@
 package jp.co.javainterpreter.stream;
 
 import jp.co.javainterpreter.token.Token;
-import jp.co.javainterpreter.token.TokenType;
 
 public class TokenStream {
 
@@ -20,24 +19,26 @@ public class TokenStream {
         String word = seekWord(position);
         position += word.length();
 
-        return switch (word) {
-            case "public" -> new Token(TokenType.PUBLIC);
-            case "class" -> new Token(TokenType.CLASS);
-            default -> null;
-        };
+        return Token.create(word);
     }
 
     /**
      * 次の単語を取得する
      */
     private String seekWord(int position) {
+        // 空白をスキップ
+        while (position < source.length() && Character.isWhitespace(source.charAt(position))) {
+            position++;
+        }
+
         StringBuilder word = new StringBuilder();
         for (int i = position; i < source.length(); i++) {
             char c = source.charAt(i);
-            if (c == ' ') {
-                break;
-            }
+            if (!Character.isWhitespace(c)) {
             word.append(c);
+            } else {
+            break;
+            }
         }
         return word.toString();
     }
