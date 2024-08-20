@@ -2,5 +2,5 @@ package jp.co.javainterpreter.token;
 
 public enum TokenType {
 
-    PUBLIC,
+    PUBLIC, CLASS,
 }

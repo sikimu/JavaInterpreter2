@@ -9,10 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TokenStreamTest {
 
     @Test
-    void test次の単語を取得する() {
+    void test次の単語を取得する_public() {
         TokenStream tokenStream = new TokenStream("public");
         Token token = tokenStream.getNext();
 
         assertEquals(TokenType.PUBLIC, token.type);
+    }
+
+    @Test
+    void test次の単語を取得する_class() {
+        TokenStream tokenStream = new TokenStream("class");
+        Token token = tokenStream.getNext();
+
+        assertEquals(TokenType.CLASS, token.type);
     }
 }
