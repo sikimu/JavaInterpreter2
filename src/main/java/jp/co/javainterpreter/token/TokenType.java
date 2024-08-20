@@ -1,6 +1,12 @@
 package jp.co.javainterpreter.token;
 
 public enum TokenType {
-
-    PUBLIC, CLASS,
+    /**
+     * public
+     */
+    PUBLIC, 
+    /**
+     * class
+     */
+    CLASS,
 }
