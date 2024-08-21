@@ -16,8 +16,9 @@ public class TokenStream {
     }
 
     public Token getNext() {
-        String word = seekWord(position);
-        position += word.length();
+        skip();
+        
+        String word = seekWord();
 
         return Token.create(word);
     }
@@ -25,21 +26,39 @@ public class TokenStream {
     /**
      * 次の単語を取得する
      */
-    private String seekWord(int position) {
-        // 空白をスキップ
-        while (position < source.length() && Character.isWhitespace(source.charAt(position))) {
-            position++;
-        }
-
+    String seekWord() {
         StringBuilder word = new StringBuilder();
-        for (int i = position; i < source.length(); i++) {
-            char c = source.charAt(i);
+        for (; position < source.length(); position++) {
+            char c = source.charAt(position);
             if (!Character.isWhitespace(c)) {
-            word.append(c);
+                word.append(c);
             } else {
-            break;
+                break;
             }
         }
         return word.toString();
+    }
+
+    /**
+     * 空白やコメントをスキップする
+     */
+    void skip() {
+
+        while(position < source.length()){
+            if(Character.isWhitespace(source.charAt(position))){
+                position++;
+            } else if(position < source.length() - 1 && source.charAt(position) == '/' && source.charAt(position + 1) == '/'){
+                while (position < source.length() && source.charAt(position) != '\n') {
+                    position++;
+                }
+            } else if(position < source.length() - 1 && source.charAt(position) == '/' && source.charAt(position + 1) == '*'){
+                while (position < source.length() - 1 && !(source.charAt(position) == '*' && source.charAt(position + 1) == '/')) {
+                    position++;
+                }
+                position += 2;
+            } else {
+                break;
+            }
+        }
     }
 }
