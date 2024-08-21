@@ -35,7 +35,7 @@ public class TokenStreamTest {
     }
 
     @Test
-    void test次の単語を取得する_複数行コメント() {
+    void testスキップ処理_複数行コメント() {
         TokenStream tokenStream = new TokenStream("""
                 /* public
                 class */a
@@ -43,5 +43,34 @@ public class TokenStreamTest {
         tokenStream.skip();    
 
         assertEquals(18, tokenStream.position);
+    }
+
+    @Test
+    void testスキップ処理_複数行コメント_コメントが終わらない() {
+        TokenStream tokenStream = new TokenStream("""
+                /* public
+                class a""");
+        tokenStream.skip();
+
+        assertEquals(18, tokenStream.position);
+    }
+
+    @Test
+    void testスキップ処理_コメントなし() {
+        TokenStream tokenStream = new TokenStream("public");
+        tokenStream.skip();
+
+        assertEquals(0, tokenStream.position);
+    }
+
+    @Test
+    void testスキップ処理_複数種類() {
+        TokenStream tokenStream = new TokenStream("""
+                // public
+                /* class */a
+                """);
+        tokenStream.skip();
+
+        assertEquals(21, tokenStream.position);
     }
 }
