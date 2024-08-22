@@ -86,6 +86,20 @@ public class TokenStream {
         return "";
     }
 
+    public static String seekString(String source) {
+
+        StringBuilder word = new StringBuilder();
+        for (char c : source.toCharArray()) {
+            if (Character.isLetter(c)) {
+                word.append(c);
+            } else {
+                break;
+            }
+        }
+
+        return word.toString();
+    }
+
     /**
      * 次のトークンを取得する
      * @return トークン

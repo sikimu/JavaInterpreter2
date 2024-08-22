@@ -103,4 +103,22 @@ public class TokenStreamTest {
 
         assertEquals("++", TokenStream.seekSymbol("++"));
     }
+
+    @Test
+    void test次の文字列を取得する_文末() {
+
+        assertEquals("public", TokenStream.seekString("public"));
+    }
+
+    @Test
+    void test次の文字列を取得する_空白() {
+
+        assertEquals("public", TokenStream.seekString("public class"));
+    }
+
+    @Test
+    void test次の文字列を取得する_演算子() {
+
+        assertEquals("public", TokenStream.seekString("public+class"));
+    }
 }
