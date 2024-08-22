@@ -47,18 +47,22 @@ public class TokenStream {
     public Token getNext() {
         position = position + calculateSkipLength(source.substring(position));
         
-        String word = seekWord();
+        String word = seekWord(source.substring(position));
+        position = position + word.length();
 
         return Token.create(word);
     }
 
     /**
      * 次の単語を取得する
+     *
+     * @param source 入力文字列
+     * @return 単語
      */
-    String seekWord() {
+    static String seekWord(String source) {
+
         StringBuilder word = new StringBuilder();
-        for (; position < source.length(); position++) {
-            char c = source.charAt(position);
+        for (char c : source.toCharArray()) {
             if (!Character.isWhitespace(c)) {
                 word.append(c);
             } else {
