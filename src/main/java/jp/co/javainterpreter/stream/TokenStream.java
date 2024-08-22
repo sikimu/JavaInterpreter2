@@ -15,8 +15,37 @@ public class TokenStream {
         this.source = source;
     }
 
+    /**
+     * スキップできる文字数を返す
+     * @param source 入力文字列
+     * @return スキップできる文字数
+     */
+    static int calculateSkipLength(String source) {
+
+        int length = 0;
+
+        while(length < source.length()){
+            if(Character.isWhitespace(source.charAt(length))){
+                length++;
+            } else if(length < source.length() - 1 && source.charAt(length) == '/' && source.charAt(length + 1) == '/'){
+                while (length < source.length() && source.charAt(length) != '\n') {
+                    length++;
+                }
+            } else if(length < source.length() - 1 && source.charAt(length) == '/' && source.charAt(length + 1) == '*'){
+                while (length < source.length() - 1 && !(source.charAt(length) == '*' && source.charAt(length + 1) == '/')) {
+                    length++;
+                }
+                length += 2;
+            } else {
+                break;
+            }
+        }
+
+        return length;
+    }
+
     public Token getNext() {
-        skip();
+        position = position + calculateSkipLength(source.substring(position));
         
         String word = seekWord();
 
@@ -39,26 +68,4 @@ public class TokenStream {
         return word.toString();
     }
 
-    /**
-     * 空白やコメントをスキップする
-     */
-    void skip() {
-
-        while(position < source.length()){
-            if(Character.isWhitespace(source.charAt(position))){
-                position++;
-            } else if(position < source.length() - 1 && source.charAt(position) == '/' && source.charAt(position + 1) == '/'){
-                while (position < source.length() && source.charAt(position) != '\n') {
-                    position++;
-                }
-            } else if(position < source.length() - 1 && source.charAt(position) == '/' && source.charAt(position + 1) == '*'){
-                while (position < source.length() - 1 && !(source.charAt(position) == '*' && source.charAt(position + 1) == '/')) {
-                    position++;
-                }
-                position += 2;
-            } else {
-                break;
-            }
-        }
-    }
 }

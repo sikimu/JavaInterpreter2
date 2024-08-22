@@ -17,60 +17,54 @@ public class TokenStreamTest {
 
     @Test
     void testスキップ処理_スペースのみ() {
-        TokenStream tokenStream = new TokenStream("  public");
-        tokenStream.skip();
+        int length = TokenStream.calculateSkipLength("  public");
 
-        assertEquals(tokenStream.position, 2);
+        assertEquals(2, length);
     }
 
     @Test
     void testスキップ処理_1行コメント() {
-        TokenStream tokenStream = new TokenStream("""
+        int length = TokenStream.calculateSkipLength("""
                 // public
                 class
                 """);
-        tokenStream.skip();
 
-        assertEquals(10, tokenStream.position);
+        assertEquals(10, length);
     }
 
     @Test
     void testスキップ処理_複数行コメント() {
-        TokenStream tokenStream = new TokenStream("""
+        int length = TokenStream.calculateSkipLength("""
                 /* public
                 class */a
                 """);
-        tokenStream.skip();    
 
-        assertEquals(18, tokenStream.position);
+        assertEquals(18, length);
     }
 
     @Test
     void testスキップ処理_複数行コメント_コメントが終わらない() {
-        TokenStream tokenStream = new TokenStream("""
+        int length = TokenStream.calculateSkipLength("""
                 /* public
                 class a""");
-        tokenStream.skip();
 
-        assertEquals(18, tokenStream.position);
+
+        assertEquals(18, length);
     }
 
     @Test
     void testスキップ処理_コメントなし() {
-        TokenStream tokenStream = new TokenStream("public");
-        tokenStream.skip();
+        int length = TokenStream.calculateSkipLength("public");
 
-        assertEquals(0, tokenStream.position);
+        assertEquals(0, length);
     }
 
     @Test
     void testスキップ処理_複数種類() {
-        TokenStream tokenStream = new TokenStream("""
+        int length = TokenStream.calculateSkipLength("""
                 // public
                 /* class */a
                 """);
-        tokenStream.skip();
-
-        assertEquals(21, tokenStream.position);
+        assertEquals(21, length);
     }
 }
