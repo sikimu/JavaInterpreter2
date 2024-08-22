@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TokenStreamTest {
 
     @Test
-    void test次の単語を取得する() {
+    void test次のトークンを取得する() {
         TokenStream tokenStream = new TokenStream(" public class");
 
         assertEquals(TokenType.PUBLIC, tokenStream.next().type);

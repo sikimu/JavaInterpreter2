@@ -44,6 +44,10 @@ public class TokenStream {
         return length;
     }
 
+    /**
+     * 次のトークンを取得する
+     * @return
+     */
     public Token next() {
         position = position + calculateSkipLength(source.substring(position));
         
