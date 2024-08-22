@@ -121,15 +121,23 @@ public class TokenStream {
      */
     static String seekWord(String source) {
 
-        StringBuilder word = new StringBuilder();
-        for (char c : source.toCharArray()) {
-            if (!Character.isWhitespace(c)) {
-                word.append(c);
-            } else {
-                break;
-            }
+        // 演算子の場合
+        if(!source.isEmpty() && isSymbol(source)){
+            return seekSymbol(source);
+        } else if(Character.isDigit(source.charAt(0))){
+            return seekNumber(source);
+        } else {
+            return seekString(source);
         }
-        return word.toString();
     }
 
+    public static boolean isSymbol(String source){
+        for (String operator : SYMBOLS) {
+            if (source.startsWith(operator)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
