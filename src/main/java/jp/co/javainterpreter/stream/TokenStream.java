@@ -44,7 +44,7 @@ public class TokenStream {
         return length;
     }
 
-    public Token getNext() {
+    public Token next() {
         position = position + calculateSkipLength(source.substring(position));
         
         String word = seekWord(source.substring(position));
