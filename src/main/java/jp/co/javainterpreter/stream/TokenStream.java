@@ -45,6 +45,26 @@ public class TokenStream {
     }
 
     /**
+     * 数字を取得する
+     * @param number 数字
+     * @return 数字
+     */
+    static String seekNumber(String number) {
+
+        // 数字には小数点や指数表記やLなどが含まれる
+        StringBuilder word = new StringBuilder();
+        for (char c : number.toCharArray()) {
+            if (Character.isDigit(c) || c == '.' || c == 'e' || c == 'E' || c == 'f' || c == 'd' || c == 'l' || c == 'L') {
+                word.append(c);
+            } else {
+                break;
+            }
+        }
+
+        return word.toString();
+    }
+
+    /**
      * 次のトークンを取得する
      * @return トークン
      */

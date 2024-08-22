@@ -67,4 +67,28 @@ public class TokenStreamTest {
                 """);
         assertEquals(21, length);
     }
+
+    @Test
+    void test次の数字を取得する_文末() {
+
+        assertEquals("123", TokenStream.seekNumber("123"));
+    }
+
+    @Test
+    void test次の数字を取得する_空白() {
+
+        assertEquals("123", TokenStream.seekNumber("123 a"));
+    }
+
+    @Test
+    void test次の数字を取得する_演算子() {
+
+        assertEquals("123", TokenStream.seekNumber("123/bbb"));
+    }
+
+    @Test
+    void test次の数字を取得する_小数点() {
+
+        assertEquals("0.1", TokenStream.seekNumber("0.1"));
+    }
 }
