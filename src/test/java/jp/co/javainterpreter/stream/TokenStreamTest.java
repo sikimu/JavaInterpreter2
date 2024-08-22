@@ -91,4 +91,12 @@ public class TokenStreamTest {
 
         assertEquals("0.1", TokenStream.seekNumber("0.1"));
     }
+
+    @Test
+    void test次の特殊文字を取得する_1文字() {
+
+        assertEquals("+", TokenStream.seekSymbol("+"));
+    }
+
+
 }

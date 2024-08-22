@@ -5,6 +5,12 @@ import jp.co.javainterpreter.token.Token;
 public class TokenStream {
 
     /**
+     * 演算子や括弧や区切り文字
+     * 文字数が長いものから順に並べる
+     */
+    final static String[] SYMBOLS = new String[] { ">>>=", ">>=", "<<=", "==", "!=", "<=", ">=", "&&", "||", "++", "--", "+=", "-=", "*=", "/=", "&=", "|=", "^=", "%=", "<<", ">>", ">", "<", "=", "!", "~", "?", ":", "+", "-", "*", "/", "&", "|", "^", "%", "(", ")", "[", "]", "{", "}", ",", ";", "." };
+
+    /**
      * 現在の位置
      */
     int position = 0;
@@ -62,6 +68,22 @@ public class TokenStream {
         }
 
         return word.toString();
+    }
+
+    /**
+     * 演算子や括弧や区切り文字を取得する
+     * @param source 入力文字列
+     * @return 演算子
+     */
+    public static String seekSymbol(String source) {
+
+        for (String operator : SYMBOLS) {
+            if (source.startsWith(operator)) {
+                return operator;
+            }
+        }
+
+        return "";
     }
 
     /**
