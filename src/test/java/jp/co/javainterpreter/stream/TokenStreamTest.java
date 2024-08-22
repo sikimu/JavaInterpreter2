@@ -98,5 +98,9 @@ public class TokenStreamTest {
         assertEquals("+", TokenStream.seekSymbol("+"));
     }
 
+    @Test
+    void test次の特殊文字を取得する_2文字() {
 
+        assertEquals("++", TokenStream.seekSymbol("++"));
+    }
 }
