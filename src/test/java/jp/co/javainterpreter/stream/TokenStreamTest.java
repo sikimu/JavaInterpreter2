@@ -90,6 +90,7 @@ public class TokenStreamTest {
     void test次の数字を取得する_小数点() {
 
         assertEquals("0.1", TokenStream.seekNumber("0.1"));
+        assertEquals("0.1", TokenStream.seekNumber("0.1/bbb"));
     }
 
     @Test
