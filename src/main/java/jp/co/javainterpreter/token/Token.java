@@ -18,9 +18,9 @@ public class Token {
     public static Token create(String string) {
 
         return switch (string) {
-            case "public" -> new Token(TokenType.PUBLIC, string);
             case "class" -> new Token(TokenType.CLASS, string);
-            case "{", "}" -> new Token(TokenType.SEPARATOR, string);
+            case "public", "private" -> new Token(TokenType.KEYWORD, string);
+            case "(", ")", "{", "}", ";", ",", ".", "[", "]" -> new Token(TokenType.SEPARATOR, string);
             default -> new Token(TokenType.IDENTIFIER, string);
         };
     }

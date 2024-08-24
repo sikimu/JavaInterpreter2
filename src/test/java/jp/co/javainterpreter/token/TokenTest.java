@@ -9,7 +9,7 @@ public class TokenTest {
     @Test
     void testトークン作成_public(){
         Token token = Token.create("public");
-        assertEquals(TokenType.PUBLIC, token.type);
+        assertEquals(TokenType.KEYWORD, token.type);
     }
 
     @Test

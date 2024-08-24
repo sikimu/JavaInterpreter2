@@ -11,7 +11,7 @@ public class TokenStreamTest {
     void test次のトークンを取得する() {
         TokenStream tokenStream = new TokenStream(" public class");
 
-        assertEquals(TokenType.PUBLIC, tokenStream.next().type);
+        assertEquals(TokenType.KEYWORD, tokenStream.next().type);
         assertEquals(TokenType.CLASS, tokenStream.next().type);
     }
 
