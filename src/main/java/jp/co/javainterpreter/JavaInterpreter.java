@@ -66,7 +66,7 @@ public class JavaInterpreter {
             }
         }
 
-        return new JiClass("jp.co.javainterpreter.token", className);
+        return new JiClass(packageName, className);
     }
 
     /**
