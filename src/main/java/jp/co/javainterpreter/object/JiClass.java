@@ -24,13 +24,13 @@ public class JiClass {
         String className = token.value;
 
         token = tokenStream.next();
-        if(token.type != TokenType.SEPARATOR || !token.value.equals("{")) {
+        if(token.type != TokenType.LBRACE) {
             throw new RuntimeException("Invalid token: " + token.type);
         }
 
         while (tokenStream.hasNext()) {
             token = tokenStream.next();
-            if(token.type == TokenType.SEPARATOR && token.value.equals("}")) {
+            if(token.type == TokenType.RBRACE) {
                 break;
             }
         }

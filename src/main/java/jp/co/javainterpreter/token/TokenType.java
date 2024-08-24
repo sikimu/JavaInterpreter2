@@ -5,8 +5,10 @@ public enum TokenType {
     CLASS,
     /** public */
     PUBLIC,
+    /** { */
+    LBRACE,
+    /** } */
+    RBRACE,
     /** identifier */
     IDENTIFIER,
-    /** separator */
-    SEPARATOR,
 }

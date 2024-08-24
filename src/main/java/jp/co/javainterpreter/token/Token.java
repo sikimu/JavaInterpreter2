@@ -20,7 +20,8 @@ public class Token {
         return switch (string) {
             case "class" -> new Token(TokenType.CLASS, string);
             case "public", "private" -> new Token(TokenType.PUBLIC, string);
-            case "(", ")", "{", "}", ";", ",", ".", "[", "]" -> new Token(TokenType.SEPARATOR, string);
+            case "{" -> new Token(TokenType.LBRACE, string);
+            case "}" -> new Token(TokenType.RBRACE, string);
             default -> new Token(TokenType.IDENTIFIER, string);
         };
     }
