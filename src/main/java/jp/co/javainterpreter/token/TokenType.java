@@ -6,9 +6,9 @@ public enum TokenType {
     /** public */
     PUBLIC,
     /** { */
-    LBRACE,
+    L_BRACE,
     /** } */
-    RBRACE,
+    R_BRACE,
     /** identifier */
     IDENTIFIER,
 }
