@@ -5,6 +5,8 @@ public enum TokenType {
     CLASS,
     /** public */
     PUBLIC,
+    /** int */
+    INT,
     /** { */
     L_BRACE,
     /** } */

@@ -1,26 +1,15 @@
 package jp.co.javainterpreter.object;
 
 import jp.co.javainterpreter.statement.JiStatement;
+import jp.co.javainterpreter.token.Token;
 
 public class JiMethod {
-    private String name;
-    private Class<?> returnType;
+    public final String name;
+    public final Token returnType;
 
-    public JiMethod(String name, Class<?> returnType) {
+    public JiMethod(String name, Token returnType) {
         this.name = name;
         this.returnType = returnType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Class<?> getReturnType() {
-        return returnType;
-    }
-
-    public JiObject execute() {
-        return null;
     }
 
     public void addStatement(JiStatement statement) {
