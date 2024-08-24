@@ -4,7 +4,6 @@ import jp.co.javainterpreter.instance.JiClassInstance;
 import jp.co.javainterpreter.object.JiClass;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
-import jp.co.javainterpreter.token.TokenType;
 
 public class JavaInterpreter {
 
@@ -32,41 +31,12 @@ public class JavaInterpreter {
         while (tokenStream.hasNext()) {
             Token token = tokenStream.next();
             switch (token.type) {
-                case CLASS -> jiClass = createJiClass(packageName, tokenStream);
+                case CLASS -> jiClass = JiClass.create(packageName, tokenStream);
                 default -> throw new RuntimeException("Invalid token: " + token.type);
             }
         }
 
         jiClass = new JiClass(packageName, "Token");
-    }
-
-    /**
-     * Jiクラスの作成
-     * @param packageName パッケージ名
-     * @param tokenStream トークンストリーム
-     */
-    private JiClass createJiClass(String packageName, TokenStream tokenStream) {
-
-        Token token = tokenStream.next();
-        if(token.type != TokenType.IDENTIFIER) {
-            throw new RuntimeException("Invalid token: " + token.type);
-        }
-
-        String className = token.value;
-
-        token = tokenStream.next();
-        if(token.type != TokenType.SEPARATOR || !token.value.equals("{")) {
-            throw new RuntimeException("Invalid token: " + token.type);
-        }
-
-        while (tokenStream.hasNext()) {
-            token = tokenStream.next();
-            if(token.type == TokenType.SEPARATOR && token.value.equals("}")) {
-                break;
-            }
-        }
-
-        return new JiClass(packageName, className);
     }
 
     /**
