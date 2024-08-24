@@ -11,7 +11,7 @@ class JavaInterpreterTest {
     @Test
     void testソース読み込み成功() {
         JavaInterpreter javaInterpreter = new JavaInterpreter();
-        javaInterpreter.loadSource("jp.co.javainterpreter.token", "public class Token { }");
+        javaInterpreter.loadSource("jp.co.javainterpreter.token", "class Token { }");
         JiClass jiClass = javaInterpreter.getJiClass("jp.co.javainterpreter.token", "Token");
 
         assertEquals("jp.co.javainterpreter.token.Token", jiClass.getFullName());

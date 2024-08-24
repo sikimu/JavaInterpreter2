@@ -140,4 +140,10 @@ public class TokenStream {
 
         return false;
     }
+
+    public boolean hasNext() {
+
+        position = position + calculateSkipLength(source.substring(position));
+        return position < source.length();
+    }
 }

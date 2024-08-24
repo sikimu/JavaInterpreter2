@@ -1,12 +1,12 @@
 package jp.co.javainterpreter.token;
 
 public enum TokenType {
-    /**
-     * public
-     */
-    PUBLIC, 
-    /**
-     * class
-     */
+    /** class */
     CLASS,
+    /** identifier */
+    IDENTIFIER,
+    /** public */
+    PUBLIC,
+    /** separator */
+    SEPARATOR,
 }

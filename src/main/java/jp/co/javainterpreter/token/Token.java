@@ -3,22 +3,25 @@ package jp.co.javainterpreter.token;
 public class Token {
 
     public final TokenType type;
+    public final String value;
 
-    public Token(TokenType tokenType) {
+    public Token(TokenType tokenType, String string) {
         this.type = tokenType;
+        this.value = string;
     }
 
     /**
      * トークンを作成する
-     * @param string
-     * @return
+     * @param string 文字列
+     * @return トークン
      */
     public static Token create(String string) {
 
         return switch (string) {
-            case "public" -> new Token(TokenType.PUBLIC);
-            case "class" -> new Token(TokenType.CLASS);
-            default -> null;
+            case "public" -> new Token(TokenType.PUBLIC, string);
+            case "class" -> new Token(TokenType.CLASS, string);
+            case "{", "}" -> new Token(TokenType.SEPARATOR, string);
+            default -> new Token(TokenType.IDENTIFIER, string);
         };
     }
 }
