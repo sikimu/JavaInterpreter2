@@ -3,8 +3,8 @@ package jp.co.javainterpreter.token;
 public enum TokenType {
     /** class */
     CLASS,
-    /** keyword */
-    KEYWORD,
+    /** public */
+    PUBLIC,
     /** identifier */
     IDENTIFIER,
     /** separator */
