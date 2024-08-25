@@ -131,6 +131,11 @@ public class TokenStream {
         }
     }
 
+    /**
+     * 演算子や括弧や区切り文字で始まるかどうか
+     * @param source 入力文字列
+     * @return 演算子や括弧や区切り文字かどうか
+     */
     public static boolean isSymbol(String source){
         for (String operator : SYMBOLS) {
             if (source.startsWith(operator)) {
