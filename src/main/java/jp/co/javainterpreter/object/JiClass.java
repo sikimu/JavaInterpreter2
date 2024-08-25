@@ -1,6 +1,5 @@
 package jp.co.javainterpreter.object;
 
-import jp.co.javainterpreter.statement.JiStatement;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
 import jp.co.javainterpreter.token.TokenType;

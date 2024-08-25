@@ -4,7 +4,7 @@ import jp.co.javainterpreter.object.JiObject;
 import jp.co.javainterpreter.object.JiString;
 
 public class JiInstance {
-    private String className;
+    private final String className;
 
     public JiInstance() {
         this.className = "jp.co.javainterpreter.instance.JiClassInstance";
