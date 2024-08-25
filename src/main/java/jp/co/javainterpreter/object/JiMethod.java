@@ -1,6 +1,7 @@
 package jp.co.javainterpreter.object;
 
 import jp.co.javainterpreter.statement.JiStatement;
+import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
 
 import java.util.ArrayList;
@@ -17,6 +18,20 @@ public class JiMethod {
         this.returnType = returnType;
     }
 
+    /**
+     * メソッド作成
+     */
+    public static JiMethod create(String name, Token returnType,TokenStream tokenStream) {
+
+        JiMethod method = new JiMethod(name, returnType);
+
+        return method;
+    }
+
+    /**
+     * ステートメントを追加する
+     * @param statement
+     */
     public void addStatement(JiStatement statement) {
 
         statements.add(statement);
