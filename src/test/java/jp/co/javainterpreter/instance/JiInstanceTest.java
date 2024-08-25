@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JiClassInstanceTest {
+class JiInstanceTest {
 
     @Test
     void メソッド実行成功() {
