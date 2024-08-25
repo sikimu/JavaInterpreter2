@@ -106,7 +106,11 @@ public class TokenStream {
      */
     public Token next() {
         position = position + calculateSkipLength(source.substring(position));
-        
+
+        if(position >= source.length()){
+            throw new RuntimeException("No more token");
+        }
+
         String word = seekWord(source.substring(position));
         position = position + word.length();
 
@@ -122,7 +126,7 @@ public class TokenStream {
     static String seekWord(String source) {
 
         // 演算子の場合
-        if(!source.isEmpty() && isSymbol(source)){
+        if(isSymbol(source)){
             return seekSymbol(source);
         } else if(Character.isDigit(source.charAt(0))){
             return seekNumber(source);
