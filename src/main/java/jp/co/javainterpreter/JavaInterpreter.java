@@ -1,6 +1,6 @@
 package jp.co.javainterpreter;
 
-import jp.co.javainterpreter.instance.JiClassInstance;
+import jp.co.javainterpreter.instance.JiInstance;
 import jp.co.javainterpreter.object.JiClass;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
@@ -9,10 +9,10 @@ public class JavaInterpreter {
 
     JiClass jiClass;
 
-    public JiClassInstance createInstance(String className) {
+    public JiInstance createInstance(String className) {
 
         if(className.equals("jp.co.javainterpreter.instance.JiClassInstance")) {
-            return new JiClassInstance();
+            return new JiInstance();
         }
 
         throw new RuntimeException("Class not found: " + className);

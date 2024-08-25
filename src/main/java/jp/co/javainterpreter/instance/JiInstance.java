@@ -3,10 +3,10 @@ package jp.co.javainterpreter.instance;
 import jp.co.javainterpreter.object.JiObject;
 import jp.co.javainterpreter.object.JiString;
 
-public class JiClassInstance {
+public class JiInstance {
     private String className;
 
-    public JiClassInstance() {
+    public JiInstance() {
         this.className = "jp.co.javainterpreter.instance.JiClassInstance";
     }
 

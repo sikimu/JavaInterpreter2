@@ -16,7 +16,7 @@ class JiClassInstanceTest {
     void メソッド実行成功() {
         JiMethod method = new JiMethod("getString", new Token(TokenType.INT, "int"));
         method.addStatement(new JiReturnStatement(new JiString("Hello, World!")));
-        JiClassInstance jiClassInstance = new JiClassInstance();
+        JiInstance jiClassInstance = new JiInstance();
         JiObject result = jiClassInstance.executeMethod("getString");
 
         // JiObjectの型がJiStringであることを確認
