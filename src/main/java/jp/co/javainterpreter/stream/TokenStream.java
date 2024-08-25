@@ -125,7 +125,6 @@ public class TokenStream {
      */
     static String seekWord(String source) {
 
-        // 演算子の場合
         if(isSymbol(source)){
             return seekSymbol(source);
         } else if(Character.isDigit(source.charAt(0))){
