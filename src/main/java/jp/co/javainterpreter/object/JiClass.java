@@ -1,13 +1,20 @@
 package jp.co.javainterpreter.object;
 
+import jp.co.javainterpreter.statement.JiStatement;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
 import jp.co.javainterpreter.token.TokenType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JiClass {
 
     public final String packageName;
     public final String className;
+
+    /** メソッドリスト */
+    private final List<JiMethod> methods = new ArrayList<>();
 
     /**
      * Jiクラスの作成
@@ -52,5 +59,33 @@ public class JiClass {
     public String getFullName() {
 
         return "jp.co.javainterpreter.token.Token";
+    }
+
+    /**
+     * メソッドの実行
+     */
+    public JiObject executeMethod(String methodName) {
+
+        return getMethod(methodName).execute();
+    }
+
+    private JiMethod getMethod(String methodName) {
+
+        for(JiMethod method : methods) {
+            if(method.name.equals(methodName)) {
+                return method;
+            }
+        }
+
+        throw new RuntimeException("Method not found: " + methodName);
+    }
+
+    /**
+     * メソッドの追加
+     * @param method メソッド
+     */
+    public void addMethod(JiMethod method) {
+
+        methods.add(method);
     }
 }
