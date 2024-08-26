@@ -9,6 +9,8 @@ public class Token {
         PUBLIC,
         /** int */
         INT,
+        /** String */
+        STRING,
         /** { */
         L_BRACE,
         /** } */
@@ -40,6 +42,7 @@ public class Token {
             case "class" -> new Token(Token.Type.CLASS, string);
             case "public", "private" -> new Token(Token.Type.PUBLIC, string);
             case "int" -> new Token(Token.Type.INT, string);
+            case "String" -> new Token(Token.Type.STRING, string);
             case "{" -> new Token(Token.Type.L_BRACE, string);
             case "}" -> new Token(Token.Type.R_BRACE, string);
             default -> new Token(Token.Type.IDENTIFIER, string);
