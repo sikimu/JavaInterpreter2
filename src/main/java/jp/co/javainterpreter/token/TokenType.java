@@ -11,6 +11,10 @@ public enum TokenType {
     L_BRACE,
     /** } */
     R_BRACE,
+    /** ( */
+    L_PAREN,
+    /** ) */
+    R_PAREN,
     /** identifier */
     IDENTIFIER,
 }

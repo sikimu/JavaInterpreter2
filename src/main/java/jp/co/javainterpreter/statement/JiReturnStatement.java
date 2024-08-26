@@ -1,13 +1,12 @@
 package jp.co.javainterpreter.statement;
 
 import jp.co.javainterpreter.object.JiObject;
-import jp.co.javainterpreter.object.JiString;
 
 public class JiReturnStatement implements JiStatement {
 
     JiObject object;
 
-    public JiReturnStatement(JiString object) {
+    public JiReturnStatement(JiObject object) {
 
         this.object = object;
     }

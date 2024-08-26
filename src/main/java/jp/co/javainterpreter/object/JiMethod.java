@@ -1,17 +1,18 @@
 package jp.co.javainterpreter.object;
 
+import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.statement.JiStatement;
-import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JiMethod {
     public final String name;
     public final Token returnType;
 
     /** ステートメントリスト */
-    private final ArrayList<JiStatement> statements = new ArrayList<>();
+    final ArrayList<JiStatement> statements = new ArrayList<>();
 
     public JiMethod(String name, Token returnType) {
         this.name = name;
@@ -19,13 +20,24 @@ public class JiMethod {
     }
 
     /**
-     * メソッド作成
+     * メソッドの作成
+     * @param methodSignatureTokens メソッドシグネチャ
+     * @param parameterTokens パラメータ
+     * @param methodBodyTokens メソッドボディ
+     * @return JiMethod
      */
-    public static JiMethod create(String name, Token returnType,TokenStream tokenStream) {
+    public static JiMethod create(List<Token> methodSignatureTokens, List<Token> parameterTokens, List<Token> methodBodyTokens) {
 
-        JiMethod method = new JiMethod(name, returnType);
+        Token returnType = methodSignatureTokens.get(0);
+        String name = methodSignatureTokens.get(1).value;
 
-        return method;
+        JiMethod jiMethod = new JiMethod(name, returnType);
+
+        // メソッドのステートメントを作成する
+        JiReturnStatement jiReturnStatement = new JiReturnStatement(new JiString(parameterTokens.get(1).value));
+        jiMethod.addStatement(jiReturnStatement);
+
+        return jiMethod;
     }
 
     /**
