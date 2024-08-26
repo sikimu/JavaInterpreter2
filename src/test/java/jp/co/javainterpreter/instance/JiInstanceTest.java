@@ -5,7 +5,6 @@ import jp.co.javainterpreter.object.JiObject;
 import jp.co.javainterpreter.object.JiString;
 import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.token.Token;
-import jp.co.javainterpreter.token.TokenType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +13,7 @@ class JiInstanceTest {
 
     @Test
     void メソッド実行成功() {
-        JiMethod method = new JiMethod("getString", new Token(TokenType.INT, "int"));
+        JiMethod method = new JiMethod("getString", new Token(Token.Type.INT, "int"));
         method.addStatement(new JiReturnStatement(new JiString("Hello, World!")));
         JiInstance jiClassInstance = new JiInstance();
         JiObject result = jiClassInstance.executeMethod("getString");

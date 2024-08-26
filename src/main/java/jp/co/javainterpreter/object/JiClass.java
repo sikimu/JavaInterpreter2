@@ -2,7 +2,6 @@ package jp.co.javainterpreter.object;
 
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
-import jp.co.javainterpreter.token.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +22,20 @@ public class JiClass {
     public static JiClass create(String packageName, TokenStream tokenStream) {
 
         Token token = tokenStream.next();
-        if(token.type != TokenType.IDENTIFIER) {
+        if(token.type != Token.Type.IDENTIFIER) {
             throw new RuntimeException("Invalid token: " + token.type);
         }
 
         String className = token.value;
 
         token = tokenStream.next();
-        if(token.type != TokenType.L_BRACE) {
+        if(token.type != Token.Type.L_BRACE) {
             throw new RuntimeException("Invalid token: " + token.type);
         }
 
         while (tokenStream.hasNext()) {
             token = tokenStream.next();
-            if(token.type == TokenType.R_BRACE) {
+            if(token.type == Token.Type.R_BRACE) {
                 break;
             }
         }

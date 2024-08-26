@@ -9,12 +9,12 @@ public class TokenTest {
     @Test
     void testトークン作成_public(){
         Token token = Token.create("public");
-        assertEquals(TokenType.PUBLIC, token.type);
+        assertEquals(Token.Type.PUBLIC, token.type);
     }
 
     @Test
     void testトークン作成_class(){
         Token token = Token.create("class");
-        assertEquals(TokenType.CLASS, token.type);
+        assertEquals(Token.Type.CLASS, token.type);
     }
 }

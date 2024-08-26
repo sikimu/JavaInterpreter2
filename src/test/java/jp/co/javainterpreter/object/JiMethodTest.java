@@ -2,7 +2,6 @@ package jp.co.javainterpreter.object;
 
 import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.token.Token;
-import jp.co.javainterpreter.token.TokenType;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class JiMethodTest {
         JiMethod jiMethod = JiMethod.create(methodSignatureTokens, parameterTokens, methodBodyTokens);
 
         assertEquals("test", jiMethod.name);
-        assertEquals(TokenType.INT, jiMethod.returnType.type);
+        assertEquals(Token.Type.INT, jiMethod.returnType.type);
         // メソッドのステートメントが正しく作成されているか確認
         assertEquals(1, jiMethod.statements.size());
         assertInstanceOf(JiReturnStatement.class, jiMethod.statements.get(0));

@@ -1,6 +1,6 @@
 package jp.co.javainterpreter.stream;
 
-import jp.co.javainterpreter.token.TokenType;
+import jp.co.javainterpreter.token.Token;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,8 +11,8 @@ public class TokenStreamTest {
     void test次のトークンを取得する() {
         TokenStream tokenStream = new TokenStream(" public class");
 
-        assertEquals(TokenType.PUBLIC, tokenStream.next().type);
-        assertEquals(TokenType.CLASS, tokenStream.next().type);
+        assertEquals(Token.Type.PUBLIC, tokenStream.next().type);
+        assertEquals(Token.Type.CLASS, tokenStream.next().type);
     }
 
     @Test
