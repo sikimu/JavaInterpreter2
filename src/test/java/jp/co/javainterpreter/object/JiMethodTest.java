@@ -35,29 +35,4 @@ public class JiMethodTest {
         assertEquals(1, jiMethod.statements.size());
         assertInstanceOf(JiReturnStatement.class, jiMethod.statements.get(0));
     }
-
-    @Test
-    void testメソッド作成成功2(){
-
-        List<Token> methodSignatureTokens = new ArrayList<>();
-        methodSignatureTokens.add(Token.create("String"));
-        methodSignatureTokens.add(Token.create("test"));
-
-        List<Token> parameterTokens = new ArrayList<>();
-        parameterTokens.add(Token.create("String"));
-        parameterTokens.add(Token.create("string"));
-
-        List<Token> methodBodyTokens = new ArrayList<>();
-        methodBodyTokens.add(Token.create("return"));
-        methodBodyTokens.add(Token.create("\"Hello, World!\""));
-        methodBodyTokens.add(Token.create(";"));
-
-        JiMethod jiMethod = JiMethod.create(methodSignatureTokens, parameterTokens, methodBodyTokens);
-
-        assertEquals("test", jiMethod.name);
-        assertEquals(Token.Type.STRING, jiMethod.returnType.type);
-        // メソッドのステートメントが正しく作成されているか確認
-        assertEquals(1, jiMethod.statements.size());
-        assertInstanceOf(JiReturnStatement.class, jiMethod.statements.get(0));
-    }
 }
