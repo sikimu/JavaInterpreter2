@@ -23,7 +23,7 @@ public class JiMethod {
 
     /**
      * ステートメントを追加する
-     * @param statement
+     * @param statement ステートメント
      */
     public void addStatement(JiStatement statement) {
 
