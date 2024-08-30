@@ -13,6 +13,8 @@ public class JiMethod {
 
     /** ステートメントリスト */
     final ArrayList<JiStatement> statements = new ArrayList<>();
+    public ArrayList<JiParameter> parameters = new ArrayList<>();
+    public ArrayList<JiStatement> methodBody = new ArrayList<>();
 
     public JiMethod(String name, Token returnType) {
         this.name = name;
@@ -21,15 +23,13 @@ public class JiMethod {
 
     /**
      * メソッドの作成
-     * @param methodSignatureTokens メソッドシグネチャ
+     * @param name メソッド名
+     * @param returnType 戻り値の型
      * @param parameterTokens パラメータ
      * @param methodBodyTokens メソッドボディ
      * @return JiMethod
      */
-    public static JiMethod create(List<Token> methodSignatureTokens, List<Token> parameterTokens, List<Token> methodBodyTokens) {
-
-        Token returnType = methodSignatureTokens.get(0);
-        String name = methodSignatureTokens.get(1).value;
+    public static JiMethod create(String name, Token returnType, List<Token> parameterTokens, List<Token> methodBodyTokens) {
 
         JiMethod jiMethod = new JiMethod(name, returnType);
 
@@ -52,5 +52,17 @@ public class JiMethod {
     public JiObject execute() {
 
         return statements.get(0).execute();
+    }
+
+    public void addParameter(List<Token> parameterTokens) {
+
+        JiParameter jiParameter = new JiParameter(parameterTokens.get(0), parameterTokens.get(1));
+        parameters.add(jiParameter);
+    }
+
+    public void addMethodBody(List<Token> methodBodyTokens) {
+
+        JiReturnStatement jiReturnStatement = new JiReturnStatement(new JiString(methodBodyTokens.get(1).value));
+        methodBody.add(jiReturnStatement);
     }
 }

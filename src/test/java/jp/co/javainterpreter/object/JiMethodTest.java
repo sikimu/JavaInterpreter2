@@ -14,9 +14,48 @@ public class JiMethodTest {
     @Test
     void testメソッド作成成功(){
 
-        List<Token> methodSignatureTokens = new ArrayList<>();
-        methodSignatureTokens.add(Token.create("int"));
-        methodSignatureTokens.add(Token.create("test"));
+        Token returnType = Token.create("int");
+        JiMethod jiMethod = new JiMethod("test", returnType);
+
+        assertEquals("test", jiMethod.name);
+        assertEquals(Token.Type.INT, jiMethod.returnType.type);
+    }
+
+    @Test
+    void test引数設定成功(){
+
+        Token returnType = Token.create("int");
+        JiMethod jiMethod = new JiMethod("test", returnType);
+
+        List<Token> parameterTokens = new ArrayList<>();
+        parameterTokens.add(Token.create("int"));
+        parameterTokens.add(Token.create("i"));
+
+        jiMethod.addParameter(parameterTokens);
+
+        assertEquals(1, jiMethod.parameters.size());
+    }
+
+    @Test
+    void testメソッドボディ設定成功(){
+
+        Token returnType = Token.create("int");
+        JiMethod jiMethod = new JiMethod("test", returnType);
+
+        List<Token> methodBodyTokens = new ArrayList<>();
+        methodBodyTokens.add(Token.create("return"));
+        methodBodyTokens.add(Token.create("1"));
+        methodBodyTokens.add(Token.create(";"));
+
+        jiMethod.addMethodBody(methodBodyTokens);
+
+        assertEquals(1, jiMethod.methodBody.size());
+    }
+
+    @Test
+    void test旧メソッド作成成功(){
+
+        Token returnType = Token.create("int");
 
         List<Token> parameterTokens = new ArrayList<>();
         parameterTokens.add(Token.create("int"));
@@ -27,7 +66,7 @@ public class JiMethodTest {
         methodBodyTokens.add(Token.create("1"));
         methodBodyTokens.add(Token.create(";"));
 
-        JiMethod jiMethod = JiMethod.create(methodSignatureTokens, parameterTokens, methodBodyTokens);
+        JiMethod jiMethod = JiMethod.create("test", returnType, parameterTokens, methodBodyTokens);
 
         assertEquals("test", jiMethod.name);
         assertEquals(Token.Type.INT, jiMethod.returnType.type);
