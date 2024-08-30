@@ -22,25 +22,6 @@ public class JiMethod {
     }
 
     /**
-     * メソッドの作成
-     * @param name メソッド名
-     * @param returnType 戻り値の型
-     * @param parameterTokens パラメータ
-     * @param methodBodyTokens メソッドボディ
-     * @return JiMethod
-     */
-    public static JiMethod create(String name, Token returnType, List<Token> parameterTokens, List<Token> methodBodyTokens) {
-
-        JiMethod jiMethod = new JiMethod(name, returnType);
-
-        // メソッドのステートメントを作成する
-        JiReturnStatement jiReturnStatement = new JiReturnStatement(new JiString(parameterTokens.get(1).value));
-        jiMethod.addStatement(jiReturnStatement);
-
-        return jiMethod;
-    }
-
-    /**
      * ステートメントを追加する
      * @param statement
      */
