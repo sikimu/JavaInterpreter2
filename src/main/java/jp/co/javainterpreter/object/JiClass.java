@@ -1,5 +1,6 @@
 package jp.co.javainterpreter.object;
 
+import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
 
@@ -12,7 +13,7 @@ public class JiClass {
     public final String className;
 
     /** メソッドリスト */
-    private final List<JiMethod> methods = new ArrayList<>();
+    final List<JiMethod> methods = new ArrayList<>();
 
     /**
      * Jiクラスの作成
@@ -85,5 +86,30 @@ public class JiClass {
     public void addMethod(JiMethod method) {
 
         methods.add(method);
+    }
+
+    public void loadBody(ArrayList<Token> tokens) {
+
+        int pos = 0;
+        while (pos < tokens.size()) {
+            // ;または{または=が出現するまでトークンを読み込む
+            while (pos < tokens.size() &&
+                    tokens.get(pos).type != Token.Type.SEMICOLON &&
+                    tokens.get(pos).type != Token.Type.L_BRACE &&
+                    tokens.get(pos).type != Token.Type.EQUAL) {
+                pos++;
+            }
+            //{が出現したらメソッドの読み込みを開始する
+            if(tokens.get(pos).type == Token.Type.L_BRACE) {
+                JiMethod method = new JiMethod(tokens.get(pos - 1).value, tokens.get(pos - 2));
+                pos++;
+                while (pos < tokens.size() && tokens.get(pos).type != Token.Type.R_BRACE) {
+                    method.addStatement(new JiReturnStatement(new JiString(tokens.get(pos).value)));
+                    pos++;
+                }
+                methods.add(method);
+            }
+            pos++;
+        }
     }
 }

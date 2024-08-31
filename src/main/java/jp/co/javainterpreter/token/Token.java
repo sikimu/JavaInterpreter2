@@ -7,6 +7,8 @@ public class Token {
         CLASS,
         /** public */
         PUBLIC,
+        /** void */
+        VOID,
         /** int */
         INT,
         /** String */
@@ -21,6 +23,10 @@ public class Token {
         R_PAREN,
         /** identifier */
         IDENTIFIER,
+        /** semicolon */
+        SEMICOLON,
+        /** equal */
+        EQUAL,
     }
 
     public final Token.Type type;
