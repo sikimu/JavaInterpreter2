@@ -101,22 +101,29 @@ public class JiClass {
             }
             //{が出現したらメソッドの読み込みを開始する
             if(tokens.get(pos).type == Token.Type.L_BRACE) {
-                pos = loadMethod(tokens, pos);
+                // メソッドの終わりまでのリストを作成
+                ArrayList<Token> methodTokens = new ArrayList<>();
+                while (pos < tokens.size() && tokens.get(pos).type != Token.Type.R_BRACE) {
+                    methodTokens.add(tokens.get(pos));
+                    pos++;
+                }
+
+                loadMethod(methodTokens);
             }
             pos++;
         }
     }
 
-    private int loadMethod(ArrayList<Token> tokens, int pos) {
+    private void loadMethod(ArrayList<Token> tokens) {
 
-        JiMethod method = new JiMethod(tokens.get(pos - 1).value, tokens.get(pos - 2));
+        int pos = 0;
+
+        JiMethod method = new JiMethod("", new Token(Token.Type.INT, "int"));
         pos++;
         while (pos < tokens.size() && tokens.get(pos).type != Token.Type.R_BRACE) {
             method.addStatement(new JiReturnStatement(new JiString(tokens.get(pos).value)));
             pos++;
         }
         methods.add(method);
-
-        return pos;
     }
 }
