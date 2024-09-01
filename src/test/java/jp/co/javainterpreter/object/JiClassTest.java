@@ -37,7 +37,7 @@ class JiClassTest {
     }
 
     @Test
-    void testメソッドの実行成功() {
+    void testメソッドの実行成功_戻り値がString() {
         JiMethod method = new JiMethod("getString", new Token(Token.Type.INT, "int"));
         method.addStatement(new JiReturnStatement(new JiString("Hello, World!")));
 
@@ -49,5 +49,20 @@ class JiClassTest {
         // JiObjectの型がJiStringであることを確認
         assertInstanceOf(JiString.class, result);
         assertEquals("Hello, World!", ((JiString) result).getValue());
+    }
+
+    @Test
+    void testメソッドの実行成功_戻り値がint() {
+        JiMethod method = new JiMethod("getInt", new Token(Token.Type.INT, "int"));
+        method.addStatement(new JiReturnStatement(new JiInteger(100)));
+
+        JiClass jiClass = new JiClass("jp.co.javainterpreter.instance", "JiClassInstance");
+        jiClass.addMethod(method);
+
+        JiObject result = jiClass.executeMethod("getInt");
+
+        // JiObjectの型がJiStringであることを確認
+        assertInstanceOf(JiInteger.class, result);
+        assertEquals(100, ((JiInteger) result).getValue());
     }
 }
