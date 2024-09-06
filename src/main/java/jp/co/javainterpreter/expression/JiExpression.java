@@ -2,11 +2,11 @@ package jp.co.javainterpreter.expression;
 
 import jp.co.javainterpreter.object.JiObject;
 
-public class Expression {
+public class JiExpression {
 
     final JiObject jiObject;
 
-    public Expression(JiObject jiObject) {
+    public JiExpression(JiObject jiObject) {
         this.jiObject = jiObject;
     }
 

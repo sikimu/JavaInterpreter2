@@ -1,6 +1,6 @@
 package jp.co.javainterpreter.instance;
 
-import jp.co.javainterpreter.expression.Expression;
+import jp.co.javainterpreter.expression.JiExpression;
 import jp.co.javainterpreter.object.JiMethod;
 import jp.co.javainterpreter.object.JiObject;
 import jp.co.javainterpreter.object.JiString;
@@ -15,8 +15,8 @@ class JiInstanceTest {
     @Test
     void メソッド実行成功() {
         JiMethod method = new JiMethod("getString", new Token(Token.Type.INT, "int"));
-        Expression expression = new Expression(new JiString("Hello, World!"));
-        method.addStatement(new JiReturnStatement(expression));
+        JiExpression jiExpression = new JiExpression(new JiString("Hello, World!"));
+        method.addStatement(new JiReturnStatement(jiExpression));
         JiInstance jiClassInstance = new JiInstance();
         JiObject result = jiClassInstance.executeMethod("getString");
 

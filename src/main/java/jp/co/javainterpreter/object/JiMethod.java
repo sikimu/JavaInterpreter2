@@ -1,6 +1,6 @@
 package jp.co.javainterpreter.object;
 
-import jp.co.javainterpreter.expression.Expression;
+import jp.co.javainterpreter.expression.JiExpression;
 import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.statement.JiStatement;
 import jp.co.javainterpreter.token.Token;
@@ -44,8 +44,8 @@ public class JiMethod {
 
     public void addMethodBody(List<Token> methodBodyTokens) {
 
-        Expression expression = new Expression(new JiString(methodBodyTokens.get(1).value));
-        JiReturnStatement jiReturnStatement = new JiReturnStatement(expression);
+        JiExpression jiExpression = new JiExpression(new JiString(methodBodyTokens.get(1).value));
+        JiReturnStatement jiReturnStatement = new JiReturnStatement(jiExpression);
         methodBody.add(jiReturnStatement);
     }
 }

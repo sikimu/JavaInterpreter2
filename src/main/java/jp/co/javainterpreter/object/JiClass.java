@@ -1,6 +1,6 @@
 package jp.co.javainterpreter.object;
 
-import jp.co.javainterpreter.expression.Expression;
+import jp.co.javainterpreter.expression.JiExpression;
 import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
@@ -122,8 +122,8 @@ public class JiClass {
         JiMethod method = new JiMethod("", new Token(Token.Type.INT, "int"));
         pos++;
         while (pos < tokens.size() && tokens.get(pos).type != Token.Type.R_BRACE) {
-            Expression expression = new Expression(new JiString(tokens.get(pos).value));
-            method.addStatement(new JiReturnStatement(expression));
+            JiExpression jiExpression = new JiExpression(new JiString(tokens.get(pos).value));
+            method.addStatement(new JiReturnStatement(jiExpression));
             pos++;
         }
         methods.add(method);
