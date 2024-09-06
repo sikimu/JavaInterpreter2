@@ -1,5 +1,6 @@
 package jp.co.javainterpreter.object;
 
+import jp.co.javainterpreter.expression.Expression;
 import jp.co.javainterpreter.statement.JiReturnStatement;
 import jp.co.javainterpreter.token.Token;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,8 @@ class JiClassTest {
     @Test
     void testメソッドの実行成功_戻り値がString() {
         JiMethod method = new JiMethod("getString", new Token(Token.Type.INT, "int"));
-        method.addStatement(new JiReturnStatement(new JiString("Hello, World!")));
+        Expression expression = new Expression(new JiString("Hello, World!"));
+        method.addStatement(new JiReturnStatement(expression));
 
         JiClass jiClass = new JiClass("jp.co.javainterpreter.instance", "JiClassInstance");
         jiClass.addMethod(method);
@@ -54,7 +56,7 @@ class JiClassTest {
     @Test
     void testメソッドの実行成功_戻り値がint() {
         JiMethod method = new JiMethod("getInt", new Token(Token.Type.INT, "int"));
-        method.addStatement(new JiReturnStatement(new JiInteger(100)));
+        method.addStatement(new JiReturnStatement(new Expression(new JiInteger(100))));
 
         JiClass jiClass = new JiClass("jp.co.javainterpreter.instance", "JiClassInstance");
         jiClass.addMethod(method);

@@ -1,19 +1,20 @@
 package jp.co.javainterpreter.statement;
 
+import jp.co.javainterpreter.expression.Expression;
 import jp.co.javainterpreter.object.JiObject;
 
 public class JiReturnStatement implements JiStatement {
 
-    JiObject object;
+    Expression expression;
 
-    public JiReturnStatement(JiObject object) {
+    public JiReturnStatement(Expression expression) {
 
-        this.object = object;
+        this.expression = expression;
     }
 
     @Override
     public JiObject execute() {
 
-        return object;
+        return expression.evaluate();
     }
 }
