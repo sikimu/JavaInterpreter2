@@ -7,14 +7,14 @@ import jp.co.javainterpreter.object.JiObject;
  */
 public class JiExpression {
 
-    final JiObject[] jiObjects;
+    final JiObject jiObject;
 
-    public JiExpression(JiObject... jiObject) {
-        this.jiObjects = jiObject;
+    public JiExpression(JiObject jiObject) {
+        this.jiObject = jiObject;
     }
 
     public JiObject evaluate() {
 
-        return jiObjects[0];
+        return jiObject;
     }
 }
