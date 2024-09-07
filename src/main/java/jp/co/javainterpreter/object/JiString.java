@@ -10,4 +10,12 @@ public class JiString extends JiObject {
     public String getValue() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof JiString) {
+            return value.equals(((JiString) obj).getValue());
+        }
+        return false;
+    }
 }
