@@ -18,4 +18,53 @@ public class SourceTokenList {
             tokens.add(tokenStream.next());
         }
     }
+
+    public SourceTokenList() {
+
+    }
+
+    /**
+     * リストの件数を取得する
+     * @return 件数
+     */
+    public int size() {
+
+        return tokens.size();
+    }
+
+    /**
+     * トークンを取得する
+     * @param position 位置
+     * @return トークン
+     */
+    public Token get(int position) {
+
+        return tokens.get(position);
+    }
+
+    /**
+     * {から}までのリストを作成する
+     * @param position {の位置
+     * @return リスト
+     */
+    public SourceTokenList subList(int position) {
+
+        ArrayList<Token> subList = new ArrayList<>();
+        int count = 0;
+        for(int i = position; i < tokens.size(); i++) {
+            Token token = tokens.get(i);
+            if(token.type == Token.Type.L_BRACE) {
+                count++;
+            } else if(token.type == Token.Type.R_BRACE) {
+                count--;
+            }
+            subList.add(token);
+            if(count == 0) {
+                break;
+            }
+        }
+        SourceTokenList sourceTokenList = new SourceTokenList();
+        sourceTokenList.tokens = subList;
+        return sourceTokenList;
+    }
 }

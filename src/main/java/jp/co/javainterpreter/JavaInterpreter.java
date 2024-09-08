@@ -2,6 +2,7 @@ package jp.co.javainterpreter;
 
 import jp.co.javainterpreter.instance.JiInstance;
 import jp.co.javainterpreter.object.JiClass;
+import jp.co.javainterpreter.stream.SourceTokenList;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
 
@@ -26,12 +27,19 @@ public class JavaInterpreter {
      */
     public void loadSource(String packageName, String source) {
 
-        TokenStream tokenStream = new TokenStream(source);
+        SourceTokenList sourceTokenList = new SourceTokenList(source);
 
-        while (tokenStream.hasNext()) {
-            Token token = tokenStream.next();
+        int position = 0;
+        while (sourceTokenList.size() > position) {
+            Token token = sourceTokenList.get(position);
             switch (token.type) {
-                case CLASS -> jiClass = JiClass.create(packageName, tokenStream);
+                case CLASS -> {
+                    String className = sourceTokenList.get(position + 1).value;
+                    position += 2;
+                    SourceTokenList subList = sourceTokenList.subList(position);
+                    jiClass = JiClass.create(packageName, className, subList);
+                    position += subList.size();
+                }
                 default -> throw new RuntimeException("Invalid token: " + token.type);
             }
         }

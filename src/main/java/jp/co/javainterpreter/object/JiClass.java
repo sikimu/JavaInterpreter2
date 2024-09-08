@@ -2,7 +2,7 @@ package jp.co.javainterpreter.object;
 
 import jp.co.javainterpreter.expression.JiExpression;
 import jp.co.javainterpreter.statement.JiReturnStatement;
-import jp.co.javainterpreter.stream.TokenStream;
+import jp.co.javainterpreter.stream.SourceTokenList;
 import jp.co.javainterpreter.token.Token;
 
 import java.util.ArrayList;
@@ -19,28 +19,10 @@ public class JiClass {
     /**
      * Jiクラスの作成
      * @param packageName パッケージ名
-     * @param tokenStream トークンストリーム
+     * @param className クラス名
+     * @param tokenList トークンリスト
      */
-    public static JiClass create(String packageName, TokenStream tokenStream) {
-
-        Token token = tokenStream.next();
-        if(token.type != Token.Type.IDENTIFIER) {
-            throw new RuntimeException("Invalid token: " + token.type);
-        }
-
-        String className = token.value;
-
-        token = tokenStream.next();
-        if(token.type != Token.Type.L_BRACE) {
-            throw new RuntimeException("Invalid token: " + token.type);
-        }
-
-        while (tokenStream.hasNext()) {
-            token = tokenStream.next();
-            if(token.type == Token.Type.R_BRACE) {
-                break;
-            }
-        }
+    public static JiClass create(String packageName, String className, SourceTokenList tokenList) {
 
         return new JiClass(packageName, className);
     }
