@@ -17,6 +17,17 @@ public class JiClass {
     final List<JiMethod> methods = new ArrayList<>();
 
     /**
+     * Jiクラスの作成
+     * @param packageName パッケージ名
+     * @param className クラス名
+     * @param tokenList トークンリスト
+     */
+    public static JiClass create(String packageName, String className, SourceTokenList tokenList) {
+
+        return new JiClass(packageName, className);
+    }
+
+    /**
      * Constructor
      * @param packageName パッケージ名
      * @param className クラス名
