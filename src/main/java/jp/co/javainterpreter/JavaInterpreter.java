@@ -37,7 +37,7 @@ public class JavaInterpreter {
                     String className = sourceTokenList.get(position + 1).value;
                     position += 2;
                     SourceTokenList subList = sourceTokenList.subList(position);
-                    jiClass = JiClass.create(packageName, className, subList);
+                    jiClass = new JiClass(packageName, className);
                     position += subList.size();
                 }
                 default -> throw new RuntimeException("Invalid token: " + token.type);
