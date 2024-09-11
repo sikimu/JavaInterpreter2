@@ -2,6 +2,8 @@ package jp.co.javainterpreter;
 
 import jp.co.javainterpreter.instance.JiInstance;
 import jp.co.javainterpreter.object.JiClass;
+import jp.co.javainterpreter.object.JiInteger;
+import jp.co.javainterpreter.object.JiObject;
 import jp.co.javainterpreter.stream.SourceTokenList;
 import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
@@ -58,5 +60,10 @@ public class JavaInterpreter {
             return jiClass;
         }
         throw new RuntimeException("Class not found: " + packageName + "." + className);
+    }
+
+    public JiObject callMethod(String className, String methodName, JiObject[] args) {
+
+        return new JiInteger(3);
     }
 }
