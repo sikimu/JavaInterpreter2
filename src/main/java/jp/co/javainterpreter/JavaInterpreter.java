@@ -5,12 +5,13 @@ import jp.co.javainterpreter.object.JiClass;
 import jp.co.javainterpreter.object.JiInteger;
 import jp.co.javainterpreter.object.JiObject;
 import jp.co.javainterpreter.stream.SourceTokenList;
-import jp.co.javainterpreter.stream.TokenStream;
 import jp.co.javainterpreter.token.Token;
+
+import java.util.ArrayList;
 
 public class JavaInterpreter {
 
-    JiClass jiClass;
+    ArrayList<JiClass> classes = new ArrayList<>();
 
     public JiInstance createInstance(String className) {
 
@@ -29,6 +30,8 @@ public class JavaInterpreter {
      */
     public void loadSource(String packageName, String source) {
 
+        JiClass jiClass;
+
         SourceTokenList sourceTokenList = new SourceTokenList(source);
 
         int position = 0;
@@ -39,14 +42,12 @@ public class JavaInterpreter {
                     String className = sourceTokenList.get(position + 1).value;
                     position += 2;
                     SourceTokenList subList = sourceTokenList.subList(position);
-                    jiClass = JiClass.create(packageName, className, subList);
+                    classes.add(JiClass.create(packageName, className, subList));
                     position += subList.size();
                 }
                 default -> throw new RuntimeException("Invalid token: " + token.type);
             }
         }
-
-        jiClass = new JiClass(packageName, "Token");
     }
 
     /**
@@ -56,8 +57,10 @@ public class JavaInterpreter {
      * @return Jiクラス
      */
     public jp.co.javainterpreter.object.JiClass getJiClass(String packageName, String className) {
-        if(jiClass.packageName.equals(packageName) && jiClass.className.equals(className)) {
-            return jiClass;
+        for (JiClass jiClass : classes) {
+            if (jiClass.packageName.equals(packageName) && jiClass.className.equals(className)) {
+                return jiClass;
+            }
         }
         throw new RuntimeException("Class not found: " + packageName + "." + className);
     }
