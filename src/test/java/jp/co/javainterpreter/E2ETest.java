@@ -2,6 +2,7 @@ package jp.co.javainterpreter;
 
 import jp.co.javainterpreter.object.JiInteger;
 import jp.co.javainterpreter.object.JiObject;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class E2ETest {
 
-    // @Test
-    public void testStaticMethodの呼び出し() {
+    @Test
+    public void testMethodの呼び出し() {
 
         JavaInterpreter interpreter = new JavaInterpreter();
         interpreter.loadSource("jp.co.test", """
-            public class Test {
-                public static int add(int a, int b) {
+            class Test {
+                int add(int a, int b) {
                     return a + b;
                 }
             }
