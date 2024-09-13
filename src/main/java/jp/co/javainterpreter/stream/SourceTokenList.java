@@ -63,6 +63,40 @@ public class SourceTokenList {
                 break;
             }
         }
+
+        // 最初の{と最後の}を削除
+        subList.removeFirst();
+        subList.removeLast();
+
+        SourceTokenList sourceTokenList = new SourceTokenList();
+        sourceTokenList.tokens = subList;
+        return sourceTokenList;
+    }
+
+    /**
+     * (から)までのリストを作成する
+     */
+    public SourceTokenList subListParen(int position) {
+
+        ArrayList<Token> subList = new ArrayList<>();
+        int count = 0;
+        for (int i = position; i < tokens.size(); i++) {
+            Token token = tokens.get(i);
+            if (token.type == Token.Type.L_PAREN) {
+                count++;
+            } else if (token.type == Token.Type.R_PAREN) {
+                count--;
+            }
+            subList.add(token);
+            if (count == 0) {
+                break;
+            }
+        }
+
+        // 最初の(と最後の)を削除
+        subList.removeFirst();
+        subList.removeLast();
+
         SourceTokenList sourceTokenList = new SourceTokenList();
         sourceTokenList.tokens = subList;
         return sourceTokenList;

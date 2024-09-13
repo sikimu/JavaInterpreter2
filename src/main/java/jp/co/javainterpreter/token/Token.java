@@ -51,6 +51,8 @@ public class Token {
             case "String" -> new Token(Token.Type.STRING, string);
             case "{" -> new Token(Token.Type.L_BRACE, string);
             case "}" -> new Token(Token.Type.R_BRACE, string);
+            case "(" -> new Token(Token.Type.L_PAREN, string);
+            case ")" -> new Token(Token.Type.R_PAREN, string);
             default -> new Token(Token.Type.IDENTIFIER, string);
         };
     }

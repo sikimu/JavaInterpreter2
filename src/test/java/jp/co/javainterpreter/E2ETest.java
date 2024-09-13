@@ -22,7 +22,7 @@ public class E2ETest {
                 }
             }
         """);
-        JiObject result = interpreter.callMethod("jp.co.test.Test", "add", new JiObject[]{new JiInteger(1), new JiInteger(2)});
+        JiObject result = interpreter.callMethod("jp.co.test", "Test", "add", new JiObject[]{new JiInteger(1), new JiInteger(2)});
 
         assertEquals(3, ((JiInteger)result).getValue());
     }

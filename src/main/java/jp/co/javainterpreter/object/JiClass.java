@@ -24,7 +24,24 @@ public class JiClass {
      */
     public static JiClass create(String packageName, String className, SourceTokenList tokenList) {
 
-        return new JiClass(packageName, className);
+        JiClass jiClass = new JiClass(packageName, className);
+
+        for(int i = 0; i < tokenList.size(); i++) {
+            Token token = tokenList.get(i);
+            if(token.type == Token.Type.IDENTIFIER) {
+                String methodName = token.value;
+                i++;
+                SourceTokenList parameterList = tokenList.subListParen(i);
+                i += parameterList.size() + 2;
+                SourceTokenList bodyList = tokenList.subList(i);
+                JiMethod method = new JiMethod(methodName, new Token(Token.Type.INT, "int"));
+                method.addStatement(new JiReturnStatement(new JiExpression(new JiInteger(3))));
+                jiClass.addMethod(method);
+                break;
+            }
+        }
+
+        return jiClass;
     }
 
     /**

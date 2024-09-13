@@ -30,8 +30,6 @@ public class JavaInterpreter {
      */
     public void loadSource(String packageName, String source) {
 
-        JiClass jiClass;
-
         SourceTokenList sourceTokenList = new SourceTokenList(source);
 
         int position = 0;
@@ -43,7 +41,7 @@ public class JavaInterpreter {
                     position += 2;
                     SourceTokenList subList = sourceTokenList.subList(position);
                     classes.add(JiClass.create(packageName, className, subList));
-                    position += subList.size();
+                    position += subList.size() + 2;// { + body + }
                 }
                 default -> throw new RuntimeException("Invalid token: " + token.type);
             }
@@ -65,8 +63,10 @@ public class JavaInterpreter {
         throw new RuntimeException("Class not found: " + packageName + "." + className);
     }
 
-    public JiObject callMethod(String className, String methodName, JiObject[] args) {
+    public JiObject callMethod(String packageName, String className, String methodName, JiObject[] args) {
 
-        return new JiInteger(3);
+            JiClass jiClass = getJiClass(packageName, className);
+
+            return jiClass.executeMethod(methodName);
     }
 }
